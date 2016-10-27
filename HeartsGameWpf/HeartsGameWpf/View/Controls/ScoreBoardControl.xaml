@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="HeartsGameWpf.View.Controls.ScoreBoardControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="300"
+             Width="350">
+
+    <UserControl.Resources>
+        <Style x:Key="ScoreBoardCell" TargetType="TextBlock">
+            <Setter Property="Padding" Value="0,5"/>
+            <Setter Property="Width" Value="75" />
+            <Setter Property="TextAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="ScoreBoardHeader" TargetType="TextBlock" BasedOn="{ StaticResource ScoreBoardCell }">
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+        <DataTemplate x:Key="ScoreBoardDataTemplate">
+            <TextBlock Text="{Binding}" Style="{StaticResource ScoreBoardCell}" />
+        </DataTemplate>
+        <DataTemplate x:Key="ScoreBoardFirstColumnDataTemplate">
+            <TextBlock Text="{Binding}" Style="{StaticResource ScoreBoardCell}" Width="50" />
+        </DataTemplate>
+    </UserControl.Resources>
+    <StackPanel  x:Name="ScoreBoard">
+        <!-- Header -->
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Round" Style="{StaticResource ScoreBoardHeader}" Width="50"/>
+            <TextBlock Text="{Binding Path=ScoreBoardViewModel.Player1.Name}" Style="{StaticResource ScoreBoardHeader}" />
+            <TextBlock Text="{Binding Path=ScoreBoardViewModel.Player2.Name}" Style="{StaticResource ScoreBoardHeader}" />
+            <TextBlock Text="{Binding Path=ScoreBoardViewModel.Player3.Name}" Style="{StaticResource ScoreBoardHeader}" />
+            <TextBlock Text="{Binding Path=ScoreBoardViewModel.Player4.Name}" Style="{StaticResource ScoreBoardHeader}" />
+        </StackPanel>
+        <ScrollViewer MaxHeight="500" VerticalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Horizontal">
+                <!-- Round -->
+                <StackPanel>
+                    <ItemsControl ItemsSource="{Binding Path=ScoreBoardViewModel.Rounds}" 
+                                  ItemTemplate="{StaticResource ScoreBoardFirstColumnDataTemplate}"/>
+                </StackPanel>
+                <!-- Player 1 -->
+                <StackPanel DataContext="{Binding Path=ScoreBoardViewModel.Player1}">
+                    <ItemsControl ItemsSource="{Binding Score}" 
+                                  ItemTemplate="{StaticResource ScoreBoardDataTemplate}" />
+                </StackPanel>
+                <!-- Player 2 -->
+                <StackPanel DataContext="{Binding Path=ScoreBoardViewModel.Player2}">
+                    <ItemsControl ItemsSource="{Binding Score}" 
+                                  ItemTemplate="{StaticResource ScoreBoardDataTemplate}" />
+                </StackPanel>
+                <!-- Player 3 -->
+                <StackPanel DataContext="{Binding Path=ScoreBoardViewModel.Player3}">
+                    <ItemsControl ItemsSource="{Binding Score}" 
+                                  ItemTemplate="{StaticResource ScoreBoardDataTemplate}" />
+                </StackPanel>
+                <!-- Player 4 -->
+                <StackPanel DataContext="{Binding Path=ScoreBoardViewModel.Player4}">
+                    <ItemsControl ItemsSource="{Binding Score}" 
+                                  ItemTemplate="{StaticResource ScoreBoardDataTemplate}" />
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+        <Separator BorderBrush="Gray" BorderThickness="1"/>
+        <!-- Total -->
+        <StackPanel DataContext="{Binding Path=ScoreBoardViewModel}" Orientation="Horizontal">
+            <TextBlock Text="Total" Style="{StaticResource ScoreBoardHeader}" Width="50"/>
+            <TextBlock Text="{Binding Path=Player1.TotalScore}" Style="{StaticResource ScoreBoardHeader}" />
+            <TextBlock Text="{Binding Path=Player2.TotalScore}" Style="{StaticResource ScoreBoardHeader}" />
+            <TextBlock Text="{Binding Path=Player3.TotalScore}" Style="{StaticResource ScoreBoardHeader}" />
+            <TextBlock Text="{Binding Path=Player4.TotalScore}" Style="{StaticResource ScoreBoardHeader}" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>

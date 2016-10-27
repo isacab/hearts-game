@@ -1,0 +1,66 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <sys:Double x:Key="card_width">71</sys:Double>
+    <sys:Double x:Key="card_height">96</sys:Double>
+
+    <BitmapImage x:Key="b1fv" UriSource="Cards/b1fv.png" />
+    <BitmapImage x:Key="b2fv" UriSource="Cards/b2fv.png" />
+    <BitmapImage x:Key="ec" UriSource="Cards/ec.png" />
+
+    <BitmapImage x:Key="c10" UriSource="Cards/c10.png" />
+    <BitmapImage x:Key="c2" UriSource="Cards/c2.png" />
+    <BitmapImage x:Key="c3" UriSource="Cards/c3.png" />
+    <BitmapImage x:Key="c4" UriSource="Cards/c4.png" />
+    <BitmapImage x:Key="c5" UriSource="Cards/c5.png" />
+    <BitmapImage x:Key="c6" UriSource="Cards/c6.png" />
+    <BitmapImage x:Key="c7" UriSource="Cards/c7.png" />
+    <BitmapImage x:Key="c8" UriSource="Cards/c8.png" />
+    <BitmapImage x:Key="c9" UriSource="Cards/c9.png" />
+    <BitmapImage x:Key="cj" UriSource="Cards/cj.png" />
+    <BitmapImage x:Key="cq" UriSource="Cards/cq.png" />
+    <BitmapImage x:Key="ck" UriSource="Cards/ck.png" />
+    <BitmapImage x:Key="ca" UriSource="Cards/ca.png" />
+
+    <BitmapImage x:Key="d10" UriSource="Cards/d10.png" />
+    <BitmapImage x:Key="d2" UriSource="Cards/d2.png" />
+    <BitmapImage x:Key="d3" UriSource="Cards/d3.png" />
+    <BitmapImage x:Key="d4" UriSource="Cards/d4.png" />
+    <BitmapImage x:Key="d5" UriSource="Cards/d5.png" />
+    <BitmapImage x:Key="d6" UriSource="Cards/d6.png" />
+    <BitmapImage x:Key="d7" UriSource="Cards/d7.png" />
+    <BitmapImage x:Key="d8" UriSource="Cards/d8.png" />
+    <BitmapImage x:Key="d9" UriSource="Cards/d9.png" />
+    <BitmapImage x:Key="dj" UriSource="Cards/dj.png" />
+    <BitmapImage x:Key="dq" UriSource="Cards/dq.png" />
+    <BitmapImage x:Key="dk" UriSource="Cards/dk.png" />
+    <BitmapImage x:Key="da" UriSource="Cards/da.png" />
+
+    <BitmapImage x:Key="h10" UriSource="Cards/h10.png" />
+    <BitmapImage x:Key="h2" UriSource="Cards/h2.png" />
+    <BitmapImage x:Key="h3" UriSource="Cards/h3.png" />
+    <BitmapImage x:Key="h4" UriSource="Cards/h4.png" />
+    <BitmapImage x:Key="h5" UriSource="Cards/h5.png" />
+    <BitmapImage x:Key="h6" UriSource="Cards/h6.png" />
+    <BitmapImage x:Key="h7" UriSource="Cards/h7.png" />
+    <BitmapImage x:Key="h8" UriSource="Cards/h8.png" />
+    <BitmapImage x:Key="h9" UriSource="Cards/h9.png" />
+    <BitmapImage x:Key="hj" UriSource="Cards/hj.png" />
+    <BitmapImage x:Key="hq" UriSource="Cards/hq.png" />
+    <BitmapImage x:Key="hk" UriSource="Cards/hk.png" />
+    <BitmapImage x:Key="ha" UriSource="Cards/ha.png" />
+
+    <BitmapImage x:Key="s10" UriSource="Cards/s10.png" />
+    <BitmapImage x:Key="s2" UriSource="Cards/s2.png" />
+    <BitmapImage x:Key="s3" UriSource="Cards/s3.png" />
+    <BitmapImage x:Key="s4" UriSource="Cards/s4.png" />
+    <BitmapImage x:Key="s5" UriSource="Cards/s5.png" />
+    <BitmapImage x:Key="s6" UriSource="Cards/s6.png" />
+    <BitmapImage x:Key="s7" UriSource="Cards/s7.png" />
+    <BitmapImage x:Key="s8" UriSource="Cards/s8.png" />
+    <BitmapImage x:Key="s9" UriSource="Cards/s9.png" />
+    <BitmapImage x:Key="sj" UriSource="Cards/sj.png" />
+    <BitmapImage x:Key="sq" UriSource="Cards/sq.png" />
+    <BitmapImage x:Key="sk" UriSource="Cards/sk.png" />
+    <BitmapImage x:Key="sa" UriSource="Cards/sa.png" />
+</ResourceDictionary>

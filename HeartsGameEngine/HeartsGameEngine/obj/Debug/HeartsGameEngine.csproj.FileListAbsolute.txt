@@ -1,0 +1,5 @@
+c:\users\isac\documents\visual studio 2013\Projects\HeartsGameEngine\HeartsGameEngine\bin\Debug\HeartsGameEngine.dll
+c:\users\isac\documents\visual studio 2013\Projects\HeartsGameEngine\HeartsGameEngine\bin\Debug\HeartsGameEngine.pdb
+c:\users\isac\documents\visual studio 2013\Projects\HeartsGameEngine\HeartsGameEngine\obj\Debug\HeartsGameEngine.dll
+c:\users\isac\documents\visual studio 2013\Projects\HeartsGameEngine\HeartsGameEngine\obj\Debug\HeartsGameEngine.pdb
+C:\Users\Isac\documents\visual studio 2013\Projects\HeartsGameEngine\HeartsGameEngine\obj\Debug\HeartsGameEngine.csprojResolveAssemblyReference.cache

@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:HeartsGameWpf.View.Converters">
+    <converters:CardImageConverter x:Key="CardImageConverter" />
+    <converters:VisibilityConverter x:Key="VisibilityConverter"/>
+    <converters:CardInListConverter x:Key="CardInListConverter"/>
+    <converters:IntToRangeConverter x:Key="IntToRangeConverter"/>
+</ResourceDictionary>

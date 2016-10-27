@@ -1,0 +1,33 @@
+﻿<Window x:Class="HeartsGameWpf.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:Controls="clr-namespace:HeartsGameWpf.View.Controls"
+        xmlns:Modals="clr-namespace:HeartsGameWpf.View.Controls.Modals"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Name="Main"
+        Title="Hearts" 
+        WindowStartupLocation="CenterScreen" 
+        SizeToContent="WidthAndHeight"
+        SizeChanged="Window_SizeChanged">
+
+    <Grid x:Name="GridMain">
+        <DockPanel>
+
+            <Menu DockPanel.Dock="Top" Background="White" IsEnabled="{Binding MainViewModel.EnableMenu}" Panel.ZIndex="999">
+                <MenuItem Header="_Menu" Height="24">
+                    <MenuItem Header="_New Game" Command="{Binding Path=MainViewModel.NewGameCommand}"/>
+                    <MenuItem Header="_Score" Command="{Binding Path=MainViewModel.ScoreCommand}"/>
+                </MenuItem>
+            </Menu>
+            
+            <Grid>
+                <Controls:BoardControl x:Name="BoardControl" BoardViewModel="{ Binding Path=MainViewModel.Board }"/>
+                
+                <Modals:ScoreModal ScoreModalViewModel="{Binding MainViewModel.ScoreModal}" 
+                           Visibility="{Binding Path=MainViewModel.ShowScoreModal}"
+                           CloseCommand="{Binding Path=MainViewModel.CloseScoreModalCommand}"/>
+            </Grid>
+
+        </DockPanel>
+
+    </Grid>
+</Window>

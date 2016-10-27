@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{44D87FCC-3AD4-4827-BC1D-DDD0A4E92A35}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HeartsGameWpf</RootNamespace>
+    <AssemblyName>HeartsGameWpf</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Misc\GameCommand.cs" />
+    <Compile Include="ViewModel\HumanPlayerViewModel.cs" />
+    <Compile Include="ViewModel\ScoreBoardViewModel.cs" />
+    <Compile Include="ViewModel\ScoreModalViewModel.cs" />
+    <Compile Include="View\Controls\Modals\ModalControl.xaml.cs">
+      <DependentUpon>ModalControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Modals\ScoreModal.xaml.cs">
+      <DependentUpon>ScoreModal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\ScoreBoardControl.xaml.cs">
+      <DependentUpon>ScoreBoardControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Converters\CardInListConverter.cs" />
+    <Compile Include="View\Converters\IntToRangeConverter.cs" />
+    <Page Include="Resources\ConverterDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\BoardControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Modals\ModalControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Modals\ScoreModal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\PlayerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\ScoreBoardControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Misc\ActionCommand.cs" />
+    <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\BoardViewModel.cs" />
+    <Compile Include="Misc\DelayedAction.cs" />
+    <Compile Include="Misc\GameLogger.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\PlayerViewModel.cs" />
+    <Compile Include="View\Controls\BoardControl.xaml.cs">
+      <DependentUpon>BoardControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\PlayerControl.xaml.cs">
+      <DependentUpon>PlayerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Converters\CardImageConverter.cs" />
+    <Compile Include="View\Converters\VisibilityConverter.cs" />
+    <Compile Include="View\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Resources\CardDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ModalHeaderedContentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\HandListBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\HeartsGameEngine\HeartsGameEngine\HeartsGameEngine.csproj">
+      <Project>{d2a3b9eb-b745-415c-be7e-74e70a063500}</Project>
+      <Name>HeartsGameEngine</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Cards\b1fv.png" />
+    <Resource Include="Resources\Cards\b2fv.png" />
+    <Resource Include="Resources\Cards\c10.png" />
+    <Resource Include="Resources\Cards\c2.png" />
+    <Resource Include="Resources\Cards\c3.png" />
+    <Resource Include="Resources\Cards\c4.png" />
+    <Resource Include="Resources\Cards\c5.png" />
+    <Resource Include="Resources\Cards\c6.png" />
+    <Resource Include="Resources\Cards\c7.png" />
+    <Resource Include="Resources\Cards\c8.png" />
+    <Resource Include="Resources\Cards\c9.png" />
+    <Resource Include="Resources\Cards\ca.png" />
+    <Resource Include="Resources\Cards\cj.png" />
+    <Resource Include="Resources\Cards\ck.png" />
+    <Resource Include="Resources\Cards\cq.png" />
+    <Resource Include="Resources\Cards\d10.png" />
+    <Resource Include="Resources\Cards\d2.png" />
+    <Resource Include="Resources\Cards\d3.png" />
+    <Resource Include="Resources\Cards\d4.png" />
+    <Resource Include="Resources\Cards\d5.png" />
+    <Resource Include="Resources\Cards\d6.png" />
+    <Resource Include="Resources\Cards\d7.png" />
+    <Resource Include="Resources\Cards\d8.png" />
+    <Resource Include="Resources\Cards\d9.png" />
+    <Resource Include="Resources\Cards\da.png" />
+    <Resource Include="Resources\Cards\dj.png" />
+    <Resource Include="Resources\Cards\dk.png" />
+    <Resource Include="Resources\Cards\dq.png" />
+    <Resource Include="Resources\Cards\ec.png" />
+    <Resource Include="Resources\Cards\h10.png" />
+    <Resource Include="Resources\Cards\h2.png" />
+    <Resource Include="Resources\Cards\h3.png" />
+    <Resource Include="Resources\Cards\h4.png" />
+    <Resource Include="Resources\Cards\h5.png" />
+    <Resource Include="Resources\Cards\h6.png" />
+    <Resource Include="Resources\Cards\h7.png" />
+    <Resource Include="Resources\Cards\h8.png" />
+    <Resource Include="Resources\Cards\h9.png" />
+    <Resource Include="Resources\Cards\ha.png" />
+    <Resource Include="Resources\Cards\hj.png" />
+    <Resource Include="Resources\Cards\hk.png" />
+    <Resource Include="Resources\Cards\hq.png" />
+    <Resource Include="Resources\Cards\jb.png" />
+    <Resource Include="Resources\Cards\jr.png" />
+    <Resource Include="Resources\Cards\s10.png" />
+    <Resource Include="Resources\Cards\s2.png" />
+    <Resource Include="Resources\Cards\s3.png" />
+    <Resource Include="Resources\Cards\s4.png" />
+    <Resource Include="Resources\Cards\s5.png" />
+    <Resource Include="Resources\Cards\s6.png" />
+    <Resource Include="Resources\Cards\s7.png" />
+    <Resource Include="Resources\Cards\s8.png" />
+    <Resource Include="Resources\Cards\s9.png" />
+    <Resource Include="Resources\Cards\sa.png" />
+    <Resource Include="Resources\Cards\sj.png" />
+    <Resource Include="Resources\Cards\sk.png" />
+    <Resource Include="Resources\Cards\sq.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

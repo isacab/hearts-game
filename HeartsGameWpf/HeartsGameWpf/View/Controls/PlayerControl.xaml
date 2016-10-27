@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="HeartsGameWpf.View.Controls.PlayerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="500">
+    
+    <StackPanel x:Name="RootElement">
+
+        <Button x:Name="PassButton"
+                Click="PassButton_Click"
+                HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+                Margin="24"
+                Visibility="{Binding Path=HumanPlayerViewModel.PassButtonVisibility}"
+                Content="{Binding Path=HumanPlayerViewModel.SubmitLabel}"/>
+
+        <ListBox 
+            x:Name="HandListView"
+            ItemsSource="{Binding Path=HumanPlayerViewModel.SortedHand}" 
+            SelectionChanged="ListView_SelectionChanged"
+            Style="{StaticResource HandListBoxStyle}"
+            IsEnabled="{Binding Path=HumanPlayerViewModel.CanMakeAction}">
+            <ListBox.ItemContainerStyle>
+                <Style BasedOn="{StaticResource HandListBoxItemStyle}" TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="IsEnabled">
+                        <Setter.Value>
+                            <MultiBinding Converter="{StaticResource CardInListConverter}">
+                                <Binding Path="DataContext" RelativeSource="{RelativeSource Self}"/>
+                                <Binding Path="DataContext.HumanPlayerViewModel.ValidCards" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBox}}"/>
+                            </MultiBinding>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+
+    </StackPanel>
+
+</UserControl>
