@@ -106,7 +106,6 @@
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\BoardViewModel.cs" />
     <Compile Include="Misc\DelayedAction.cs" />
-    <Compile Include="Misc\GameLogger.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\PlayerViewModel.cs" />
     <Compile Include="View\Controls\BoardControl.xaml.cs">

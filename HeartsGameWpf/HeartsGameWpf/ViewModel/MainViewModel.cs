@@ -19,7 +19,6 @@ namespace HeartsGameWpf.ViewModel
         private BoardViewModel board;
         private ScoreModalViewModel scoreModal;
         private Visibility showScoreModal = Visibility.Collapsed;
-        private GameLogger logger;
         private GameManager gameManager;
 
         public MainViewModel()
@@ -28,7 +27,6 @@ namespace HeartsGameWpf.ViewModel
             gameManager.Load();
             board = new BoardViewModel(gameManager);
             scoreModal = new ScoreModalViewModel(gameManager);
-            logger = new GameLogger(gameManager);
             gameManager.GameChanged += OnGameChanged;
 
             gameManager.ClearTrick();
