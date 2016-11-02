@@ -29,6 +29,8 @@ namespace HeartsGameWpf.ViewModel
             scoreModal = new ScoreModalViewModel(gameManager);
             gameManager.GameChanged += OnGameChanged;
 
+            InitDelayedActions();
+
             gameManager.ClearTrick();
             gameManager.StartNewTurn();
             UpdateShowScoreModal();
@@ -83,7 +85,6 @@ namespace HeartsGameWpf.ViewModel
         private void NewGame(object obj)
         {
             CloseModals();
-            delayedActions.ForEach(x => x.Cancel());
             gameManager.Reset();
             gameManager.StartNewRound();
         }
@@ -125,41 +126,14 @@ namespace HeartsGameWpf.ViewModel
             ShowScoreModal = Visibility.Collapsed;
         }
 
-        private List<DelayedAction> delayedActions = new List<DelayedAction>();
         private void OnGameChanged(object sender, GameChangedEventArgs e)
         {
-            if(e.Action != GameAction.Save && e.Action != GameAction.Load)
-            {
-                Rules rules = gameManager.Rules;
+            UpdateShowScoreModal();
+        }
 
-                // Check if waiting for new turn
-                if (e.Action != GameAction.StartNewTurn && rules.CanStartNewTurn())
-                {
-                    DelayedAction startNewTurn = new DelayedAction() { Delay = 250 };
-                    startNewTurn.Action = new Action(() =>
-                    {
-                        gameManager.StartNewTurn();
-                        delayedActions.Remove(startNewTurn);
-                    });
-                    delayedActions.Add(startNewTurn);
-                    startNewTurn.Execute();
-                }
+        private void InitDelayedActions()
+        {
             
-                // Ceck if trick is finished
-                if (rules.CanClearTrick())
-                {
-                    DelayedAction clearTrick = new DelayedAction() { Delay = 1000 };
-                    clearTrick.Action = new Action(() =>
-                    {
-                        gameManager.ClearTrick();
-                        delayedActions.Remove(clearTrick);
-                    });
-                    delayedActions.Add(clearTrick);
-                    clearTrick.Execute();
-                }
-
-                UpdateShowScoreModal();
-            }
         }
 
         private void UpdateShowScoreModal()

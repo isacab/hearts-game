@@ -8,7 +8,7 @@ namespace HeartsGameEngine
 {
     public enum GameAction
     {
-        Reset, PassCards, Play, StartNewTurn, StartNewRound, ClearTrick, Load, Save
+        Reset, PassCards, Play, StartNewTurn, StartNewRound, ClearTrick
     }
 
     public class GameChangedEventArgs : EventArgs

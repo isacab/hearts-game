@@ -3,3 +3,8 @@ c:\users\isac\documents\visual studio 2013\Projects\HeartsGameEngine\HeartsGameE
 c:\users\isac\documents\visual studio 2013\Projects\HeartsGameEngine\HeartsGameEngine\obj\Debug\HeartsGameEngine.dll
 c:\users\isac\documents\visual studio 2013\Projects\HeartsGameEngine\HeartsGameEngine\obj\Debug\HeartsGameEngine.pdb
 C:\Users\Isac\documents\visual studio 2013\Projects\HeartsGameEngine\HeartsGameEngine\obj\Debug\HeartsGameEngine.csprojResolveAssemblyReference.cache
+C:\Users\Isac\Documents\Visual Studio 2013\Projects\TDDD49Hearts\HeartsGameEngine\HeartsGameEngine\bin\Debug\HeartsGameEngine.dll
+C:\Users\Isac\Documents\Visual Studio 2013\Projects\TDDD49Hearts\HeartsGameEngine\HeartsGameEngine\bin\Debug\HeartsGameEngine.pdb
+C:\Users\Isac\Documents\Visual Studio 2013\Projects\TDDD49Hearts\HeartsGameEngine\HeartsGameEngine\obj\Debug\HeartsGameEngine.csprojResolveAssemblyReference.cache
+C:\Users\Isac\Documents\Visual Studio 2013\Projects\TDDD49Hearts\HeartsGameEngine\HeartsGameEngine\obj\Debug\HeartsGameEngine.dll
+C:\Users\Isac\Documents\Visual Studio 2013\Projects\TDDD49Hearts\HeartsGameEngine\HeartsGameEngine\obj\Debug\HeartsGameEngine.pdb

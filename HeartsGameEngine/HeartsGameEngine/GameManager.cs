@@ -67,7 +67,7 @@ namespace HeartsGameEngine
         public void Load()
         {
             saveHandler.Load();
-            //OnGameChanged(new GameChangedEventArgs(GameAction.Load));
+            OnGameChanged(new GameChangedEventArgs(GameAction.Reset));
         }
 
         /// <summary>
@@ -78,7 +78,6 @@ namespace HeartsGameEngine
         public void Save()
         {
             saveHandler.Save();
-            //OnGameChanged(new GameChangedEventArgs(GameAction.Load));
         }
 
         public void Reset()
@@ -86,7 +85,6 @@ namespace HeartsGameEngine
             IsChanging = true;
             game.Reset();
             IsChanging = false;
-            saveHandler.Save();
             OnGameChanged(new GameChangedEventArgs(GameAction.Reset));
         }
 
@@ -123,7 +121,6 @@ namespace HeartsGameEngine
                 game.Phase = HeartsPhase.PassCards;
             }
 
-            Save();
             IsChanging = false;
 
             OnGameChanged(new GameChangedEventArgs(GameAction.StartNewRound));
@@ -140,7 +137,6 @@ namespace HeartsGameEngine
 
             game.CurrentPlayer = rules.NextPlayer();
 
-            Save();
             IsChanging = false;
 
             OnGameChanged(new GameChangedEventArgs(GameAction.StartNewTurn, game.CurrentPlayer));
@@ -186,7 +182,6 @@ namespace HeartsGameEngine
                 game.Phase = HeartsPhase.Tricks;
             }
 
-            Save();
             IsChanging = false;
 
             OnGameChanged(new GameChangedEventArgs(GameAction.PassCards, playerIndex));
@@ -211,7 +206,6 @@ namespace HeartsGameEngine
 
             game.CurrentTrick.Add(trickItem);
 
-            Save();
             IsChanging = false;
 
             OnGameChanged(new GameChangedEventArgs(GameAction.Play, playerIndex));
@@ -238,7 +232,6 @@ namespace HeartsGameEngine
             if (roundIsOver)
                 game.Phase = HeartsPhase.None;
 
-            Save();
             IsChanging = false;
 
             OnGameChanged(new GameChangedEventArgs(GameAction.ClearTrick, trickWinner));

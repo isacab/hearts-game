@@ -28,25 +28,11 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <DataTemplate.Resources>
-                            <sys:TimeSpan x:Key="CardToTrickTime">0:0:0.250</sys:TimeSpan>
                             <sys:TimeSpan x:Key="TrickEndBeginTime">0:0:0.8</sys:TimeSpan>
                             <Duration x:Key="TrickEndDuration">0:0:0.2</Duration>
                         </DataTemplate.Resources>
                         <Canvas Height="{StaticResource card_height}" 
                                 Width="{StaticResource card_width}">
-                            <Canvas.Triggers>
-                                <EventTrigger RoutedEvent="Loaded">
-                                    <BeginStoryboard>
-                                        <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                             From="0" To="1"
-                                                             BeginTime="{StaticResource CardToTrickTime}"
-                                                             Duration="0:0:0"
-                                                             Completed="DoubleAnimation_Completed"/>
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </EventTrigger>
-                            </Canvas.Triggers>
                             <Border Background="Black">
                                 <Border.Style>
                                     <Style TargetType="Border">

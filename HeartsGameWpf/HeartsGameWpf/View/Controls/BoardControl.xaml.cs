@@ -48,7 +48,7 @@ namespace HeartsGameWpf.View.Controls
 
         private void DoubleAnimation_Completed(object sender, EventArgs e)
         {
-            //BoardViewModel.StartNewTurn.Execute(null);
+            BoardViewModel.StartNewTurn.Execute(null);
         }
 
         private void Storyboard_Completed(object sender, EventArgs e)

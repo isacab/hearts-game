@@ -23,13 +23,13 @@ namespace HeartsGameEngine
 
     class SaveHandler
     {
-        private const string fileName = "save.xml";
+        public const string FileName = "save.xml";
         private FileSystemWatcher watcher = new FileSystemWatcher();
 
         public SaveHandler()
         {
             watcher.Path = Directory.GetCurrentDirectory();
-            watcher.Filter = fileName;
+            watcher.Filter = FileName;
             watcher.Changed += Watcher_Changed; 
         }
 
@@ -42,23 +42,23 @@ namespace HeartsGameEngine
             set { game = value; }
         }
 
-        private bool autoLoad = false;
-        public bool AutoLoad
+        private bool enableWatcher = false;
+        public bool EnableWatcher
         {
             get 
             {
-                return autoLoad; 
+                return enableWatcher; 
             }
             set 
             {
-                autoLoad = value;
+                enableWatcher = value;
                 watcher.EnableRaisingEvents = value; 
             }
         }
 
         public bool SaveFileExists()
         {
-            return File.Exists(fileName);
+            return File.Exists(FileName);
         }
 
         public void Save()
@@ -72,7 +72,7 @@ namespace HeartsGameEngine
             {
                 XDocument doc = new XDocument();
                 doc.Add(game.GenerateXElement());
-                doc.Save(fileName);
+                doc.Save(FileName);
             }
             catch(Exception e)
             {
@@ -83,7 +83,7 @@ namespace HeartsGameEngine
             }
             finally
             {
-                watcher.EnableRaisingEvents = autoLoad;
+                watcher.EnableRaisingEvents = enableWatcher;
             }
         }
 
@@ -96,7 +96,7 @@ namespace HeartsGameEngine
 
             try
             {
-                XDocument doc = XDocument.Load(fileName);
+                XDocument doc = XDocument.Load(FileName);
                 XElement gameEl = doc.Element("Game");
                 game.Load(gameEl);
             }
@@ -109,7 +109,7 @@ namespace HeartsGameEngine
             }
             finally
             {
-                watcher.EnableRaisingEvents = autoLoad;
+                watcher.EnableRaisingEvents = enableWatcher;
             }
         }
 

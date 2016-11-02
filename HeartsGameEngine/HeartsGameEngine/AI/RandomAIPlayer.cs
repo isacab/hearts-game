@@ -11,71 +11,27 @@ namespace HeartsGameEngine.AI
 {
     public class RandomAiPlayer
     {
-        public RandomAiPlayer(GameManager gameManager = null, int player = -1, int delay = 0) 
-        {
-            GameManager = gameManager;
-            Player = player;
-            Delay = delay;
-
-            MakeAction();
-        }
-
-        public int Delay
-        {
-            get;
-            set;
-        }
-
-        public int Player
-        {
-            get;
-            set;
-        }
-
-        private GameManager gameManager;
-        public GameManager GameManager
-        {
-            get { return this.gameManager; }
-            set
-            {
-                gameManager = value;
-
-                if(gameManager != null)
-                {
-                    //gameManager.Game.PropertyChanged += OnGamePropertyChanged;
-                    //gameManager.Game.Players[Player].PassedCards.CollectionChanged += OnPassedCardsChanged;
-                    gameManager.GameChanged += OnEvent;
-                }
-            }
-        }
-
-        private void OnEvent(object sender, GameChangedEventArgs e)
-        {
-            if(e.Action == GameAction.Reset || e.Action == GameAction.StartNewRound || e.Action == GameAction.StartNewTurn)
-                MakeAction();
-        }
-
-        private void MakeAction()
+        public void MakeAction(GameManager gameManager, int player)
         {
             Rules rules = gameManager.Rules;
 
-            if (rules.CanPassCards(Player))
+            if (rules.CanPassCards(player))
             {
-                List<Card> cards = PickCardsToPass();
-                gameManager.PassCards(Player, cards);
+                List<Card> cards = GetCardsToPass(gameManager, player);
+                gameManager.PassCards(player, cards);
             }
 
-            if (rules.CanPlay(Player))
+            if (rules.CanPlay(player))
             {
-                Card card = PickCardsToPlay();
-                gameManager.Play(Player, card);
+                Card card = GetCardsToPlay(gameManager, player);
+                gameManager.Play(player, card);
             }
         }
 
-        private List<Card> PickCardsToPass()
+        private List<Card> GetCardsToPass(GameManager gameManager, int player)
         {
             Game game = gameManager.Game;
-            IList<Card> validHand = gameManager.Rules.ValidCards(this.Player);
+            IList<Card> validHand = gameManager.Rules.ValidCards(player);
             List<Card> cards = new List<Card>();
             for (int i = 0; i < 3; i++)
             {
@@ -87,10 +43,10 @@ namespace HeartsGameEngine.AI
             return cards;
         }
 
-        private Card PickCardsToPlay()
+        private Card GetCardsToPlay(GameManager gameManager, int player)
         {
             Game game = gameManager.Game;
-            IList<Card> validHand = gameManager.Rules.ValidCards(this.Player);
+            IList<Card> validHand = gameManager.Rules.ValidCards(player);
             int rnd = HelperMethods.GetRandomNumber(0, validHand.Count() - 1);
             Card card = validHand.ElementAt(rnd);
 

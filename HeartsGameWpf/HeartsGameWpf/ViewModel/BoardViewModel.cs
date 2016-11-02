@@ -11,14 +11,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.IO;
 
 namespace HeartsGameWpf.ViewModel
 {
     public class BoardViewModel : BaseViewModel
     {
         private readonly GameManager gameManager;
+        private readonly RandomAiPlayer aiPlayer;
+        private readonly FileSystemWatcher watcher;
 
-        private readonly RandomAiPlayer[] aiPlayers = new RandomAiPlayer[4];
+        private const int clearTrickDelay = 1000;
+        private const int aiDelay = 250;
 
         public BoardViewModel(GameManager gameManager)
         {
@@ -34,11 +38,20 @@ namespace HeartsGameWpf.ViewModel
             player3 = new PlayerViewModel(gameManager, 2);
             player4 = new PlayerViewModel(gameManager, 3);
 
-            int delay = 100;// Settings.Default.AIDelay;
-            aiPlayers[0] = new RandomAiPlayer(gameManager, 1, delay);
-            aiPlayers[1] = new RandomAiPlayer(gameManager, 2, delay);
-            aiPlayers[2] = new RandomAiPlayer(gameManager, 3, delay);
-            aiPlayers[3] = new RandomAiPlayer(gameManager, 0, delay);
+            aiPlayer = new RandomAiPlayer();
+
+            watcher = new FileSystemWatcher();
+            watcher.Changed += OnWatcherChanged;
+            watcher.Path = Directory.GetCurrentDirectory();
+            watcher.Filter = "thefiletowatch.txt";
+            watcher.EnableRaisingEvents = true;
+
+            Update();
+        }
+
+        private void OnWatcherChanged(object sender, FileSystemEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         public Game Game
@@ -89,13 +102,74 @@ namespace HeartsGameWpf.ViewModel
 
         private void OnGameCanged(object sender, GameChangedEventArgs e)
         {
-            if(e.Action == GameAction.Play && gameManager.Rules.TrickIsFinished(Game.CurrentTrick))
+            // Cancel delayed action
+            if (e.Action == GameAction.Reset)
+            {
+                delayedAction.Cancel();
+            }
+
+            gameManager.Save();
+
+            if(e.Action != GameAction.PassCards)
+            {
+                Update();
+            }
+        }
+
+        private DelayedAction delayedAction = new DelayedAction();
+        private void Update()
+        {
+            Rules rules = gameManager.Rules;
+            
+            // Check if trick is finished
+            if (gameManager.Rules.TrickIsFinished(Game.CurrentTrick))
             {
                 LastTrickWinner = gameManager.Rules.TrickWinner(Game.CurrentTrick);
             }
-            if(e.Action == GameAction.ClearTrick || e.Action == GameAction.Reset)
+            else
             {
+                // Reset last trick winner when trick is cleared
                 LastTrickWinner = -1;
+            }
+
+            // Make AI actions
+            for (int i = 0; i < Game.NumberOfPlayers; i++)
+            {
+                int player = i;
+
+                if (rules.CanPassCards(player))
+                {
+                    aiPlayer.MakeAction(gameManager, player);
+                }
+
+                if (rules.CanPlay(player))
+                {
+                    delayedAction = new DelayedAction();
+                    delayedAction.Delay = aiDelay; //debug (rules.NextPlayer() == 0) ? 0 : 250;
+                    delayedAction.Action = new Action(() =>
+                    {
+                        aiPlayer.MakeAction(gameManager, player);
+                    });
+                    delayedAction.Execute();
+                }
+            }
+
+            // Check if waiting for new turn
+            if (rules.CanStartNewTurn())
+            {
+                gameManager.StartNewTurn();
+            }
+
+            // Ceck if trick is finished
+            if (rules.CanClearTrick())
+            {
+                delayedAction = new DelayedAction();
+                delayedAction.Delay = clearTrickDelay;
+                delayedAction.Action = new Action(() =>
+                {
+                    gameManager.ClearTrick();
+                });
+                delayedAction.Execute();
             }
         }
     }
