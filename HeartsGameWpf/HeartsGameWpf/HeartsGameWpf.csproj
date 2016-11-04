@@ -56,10 +56,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModel\HumanPlayerViewModel.cs" />
+    <Compile Include="ViewModel\SaveHandlerErrorModalViewModel.cs" />
     <Compile Include="ViewModel\ScoreBoardViewModel.cs" />
     <Compile Include="ViewModel\ScoreModalViewModel.cs" />
     <Compile Include="View\Controls\Modals\ModalControl.xaml.cs">
       <DependentUpon>ModalControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Modals\SaveHandlerErrorModal.xaml.cs">
+      <DependentUpon>SaveHandlerErrorModal.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Controls\Modals\ScoreModal.xaml.cs">
       <DependentUpon>ScoreModal.xaml</DependentUpon>
@@ -78,6 +82,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Controls\Modals\ModalControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Modals\SaveHandlerErrorModal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

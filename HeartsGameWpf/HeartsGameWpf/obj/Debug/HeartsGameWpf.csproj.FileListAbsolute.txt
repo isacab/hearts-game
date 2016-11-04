@@ -64,3 +64,5 @@ C:\Users\Isac\Documents\Visual Studio 2013\Projects\TDDD49Hearts\HeartsGameWpf\H
 C:\Users\Isac\Documents\Visual Studio 2013\Projects\TDDD49Hearts\HeartsGameWpf\HeartsGameWpf\obj\Debug\HeartsGameWpf.g.resources
 C:\Users\Isac\Documents\Visual Studio 2013\Projects\TDDD49Hearts\HeartsGameWpf\HeartsGameWpf\obj\Debug\HeartsGameWpf.Properties.Resources.resources
 C:\Users\Isac\Documents\Visual Studio 2013\Projects\TDDD49Hearts\HeartsGameWpf\HeartsGameWpf\obj\Debug\HeartsGameWpf.csproj.GenerateResource.Cache
+C:\Users\Isac\Documents\Visual Studio 2013\Projects\TDDD49Hearts\HeartsGameWpf\HeartsGameWpf\obj\Debug\View\Controls\Modals\SaveHandlerErrorModal.g.cs
+C:\Users\Isac\Documents\Visual Studio 2013\Projects\TDDD49Hearts\HeartsGameWpf\HeartsGameWpf\obj\Debug\View\Controls\Modals\SaveHandlerErrorModal.baml

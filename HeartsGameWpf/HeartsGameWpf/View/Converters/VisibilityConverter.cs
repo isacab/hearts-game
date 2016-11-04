@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 
 namespace HeartsGameWpf.View.Converters
@@ -17,9 +18,9 @@ namespace HeartsGameWpf.View.Converters
             bool isVisible = (bool)value;
 
             if (isVisible)
-                return "Visible";
+                return Visibility.Visible;
 
-            return "Hidden";
+            return Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

@@ -23,8 +23,12 @@
                 <Controls:BoardControl x:Name="BoardControl" BoardViewModel="{ Binding Path=MainViewModel.Board }"/>
                 
                 <Modals:ScoreModal ScoreModalViewModel="{Binding MainViewModel.ScoreModal}" 
-                           Visibility="{Binding Path=MainViewModel.ShowScoreModal}"
+                           Visibility="{Binding Path=MainViewModel.ShowScoreModal, Converter={StaticResource VisibilityConverter}}"
                            CloseCommand="{Binding Path=MainViewModel.CloseScoreModalCommand}"/>
+
+                <Modals:SaveHandlerErrorModal SaveHandlerErrorModalViewModel="{Binding MainViewModel.SaveHandlerErrorModal}" 
+                           Visibility="{Binding Path=MainViewModel.ShowSaveHandlerErrorModal, Converter={StaticResource VisibilityConverter}}"
+                           CloseCommand="{Binding Path=MainViewModel.CloseSaveHandlerErrorModalCommand}"/>
             </Grid>
 
         </DockPanel>

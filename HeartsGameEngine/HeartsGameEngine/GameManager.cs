@@ -11,9 +11,9 @@ namespace HeartsGameEngine
     {
         #region Fields
 
-        private const string saveFile = "save.xml";
+        public const string SaveFile = "save.xml";
 
-        private SaveHandler saveHandler = new SaveHandler();
+        private SaveHandler saveHandler;
 
         #endregion //Fields
 
@@ -23,7 +23,7 @@ namespace HeartsGameEngine
         {
             game = new Game();
             rules = new Rules(game);
-            saveHandler.Game = game;
+            saveHandler = new SaveHandler(SaveFile, game);
         }
 
         #endregion //Constructor

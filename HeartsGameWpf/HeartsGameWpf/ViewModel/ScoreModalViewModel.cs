@@ -45,30 +45,11 @@ namespace HeartsGameWpf.ViewModel
             set { SetValue(ref title, value); }
         }
 
-        public ICommand CloseCommand
-        {
-            get { return new ActionCommand<object>(OnClose); }
-        }
-
         private string closeButtonText;
         public string CloseButtonText
         {
             get { return closeButtonText; }
             set { SetValue(ref closeButtonText, value); }
-        }
-
-        private void OnClose(object obj)
-        {
-            if (!gameManager.IsChanging)
-            {
-                Rules rules = gameManager.Rules;
-
-                if (rules.GameOver())
-                    gameManager.Reset();
-
-                if (rules.CanStartNewRound())
-                    gameManager.StartNewRound();
-            }
         }
 
         private void OnEvent(object sender, EventArgs e)

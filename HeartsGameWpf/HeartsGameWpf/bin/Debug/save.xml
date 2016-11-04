@@ -1,34 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Game>
-  <CurrentPlayer>-1</CurrentPlayer>
-  <RoundCounter>3</RoundCounter>
+  <CurrentPlayer>2</CurrentPlayer>
+  <RoundCounter>1</RoundCounter>
   <Phase>Tricks</Phase>
   <Player1>
     <Player>
       <Hand>
         <Card>
-          <Suit>Diamonds</Suit>
-          <Value>Queen</Value>
-        </Card>
-      </Hand>
-      <PassedCards>
-        <Card>
-          <Suit>Clubs</Suit>
-          <Value>Queen</Value>
-        </Card>
-        <Card>
-          <Suit>Clubs</Suit>
+          <Suit>Hearts</Suit>
           <Value>Three</Value>
         </Card>
         <Card>
           <Suit>Spades</Suit>
           <Value>Three</Value>
         </Card>
+        <Card>
+          <Suit>Hearts</Suit>
+          <Value>Six</Value>
+        </Card>
+        <Card>
+          <Suit>Clubs</Suit>
+          <Value>Nine</Value>
+        </Card>
+        <Card>
+          <Suit>Hearts</Suit>
+          <Value>Four</Value>
+        </Card>
+        <Card>
+          <Suit>Clubs</Suit>
+          <Value>Ten</Value>
+        </Card>
+      </Hand>
+      <PassedCards>
+        <Card>
+          <Suit>Hearts</Suit>
+          <Value>Ten</Value>
+        </Card>
+        <Card>
+          <Suit>Hearts</Suit>
+          <Value>Eight</Value>
+        </Card>
+        <Card>
+          <Suit>Clubs</Suit>
+          <Value>Seven</Value>
+        </Card>
       </PassedCards>
       <Score>
-        <RoundScore>7</RoundScore>
-        <RoundScore>5</RoundScore>
-        <RoundScore>1</RoundScore>
+        <RoundScore>0</RoundScore>
       </Score>
     </Player>
   </Player1>
@@ -36,28 +54,46 @@
     <Player>
       <Hand>
         <Card>
-          <Suit>Diamonds</Suit>
+          <Suit>Hearts</Suit>
+          <Value>Five</Value>
+        </Card>
+        <Card>
+          <Suit>Hearts</Suit>
           <Value>King</Value>
+        </Card>
+        <Card>
+          <Suit>Spades</Suit>
+          <Value>King</Value>
+        </Card>
+        <Card>
+          <Suit>Spades</Suit>
+          <Value>Six</Value>
+        </Card>
+        <Card>
+          <Suit>Diamonds</Suit>
+          <Value>Ten</Value>
+        </Card>
+        <Card>
+          <Suit>Diamonds</Suit>
+          <Value>Five</Value>
         </Card>
       </Hand>
       <PassedCards>
         <Card>
+          <Suit>Hearts</Suit>
+          <Value>Four</Value>
+        </Card>
+        <Card>
           <Suit>Clubs</Suit>
-          <Value>Seven</Value>
+          <Value>Ten</Value>
         </Card>
         <Card>
-          <Suit>Diamonds</Suit>
-          <Value>Ace</Value>
-        </Card>
-        <Card>
-          <Suit>Spades</Suit>
-          <Value>Nine</Value>
+          <Suit>Clubs</Suit>
+          <Value>Four</Value>
         </Card>
       </PassedCards>
       <Score>
-        <RoundScore>14</RoundScore>
-        <RoundScore>15</RoundScore>
-        <RoundScore>7</RoundScore>
+        <RoundScore>1</RoundScore>
       </Score>
     </Player>
   </Player2>
@@ -65,27 +101,45 @@
     <Player>
       <Hand>
         <Card>
+          <Suit>Clubs</Suit>
+          <Value>Ace</Value>
+        </Card>
+        <Card>
+          <Suit>Hearts</Suit>
+          <Value>Seven</Value>
+        </Card>
+        <Card>
+          <Suit>Diamonds</Suit>
+          <Value>Nine</Value>
+        </Card>
+        <Card>
           <Suit>Spades</Suit>
-          <Value>Queen</Value>
+          <Value>Ace</Value>
+        </Card>
+        <Card>
+          <Suit>Diamonds</Suit>
+          <Value>Seven</Value>
+        </Card>
+        <Card>
+          <Suit>Diamonds</Suit>
+          <Value>King</Value>
         </Card>
       </Hand>
       <PassedCards>
         <Card>
           <Suit>Diamonds</Suit>
-          <Value>Three</Value>
+          <Value>Ten</Value>
         </Card>
         <Card>
           <Suit>Spades</Suit>
-          <Value>Eight</Value>
+          <Value>Seven</Value>
         </Card>
         <Card>
           <Suit>Diamonds</Suit>
-          <Value>Ten</Value>
+          <Value>Five</Value>
         </Card>
       </PassedCards>
       <Score>
-        <RoundScore>5</RoundScore>
-        <RoundScore>2</RoundScore>
         <RoundScore>4</RoundScore>
       </Score>
     </Player>
@@ -94,73 +148,54 @@
     <Player>
       <Hand>
         <Card>
-          <Suit>Spades</Suit>
-          <Value>Six</Value>
-        </Card>
-      </Hand>
-      <PassedCards>
-        <Card>
-          <Suit>Spades</Suit>
-          <Value>Ten</Value>
-        </Card>
-        <Card>
-          <Suit>Spades</Suit>
+          <Suit>Diamonds</Suit>
           <Value>Queen</Value>
         </Card>
         <Card>
           <Suit>Diamonds</Suit>
-          <Value>Six</Value>
+          <Value>Two</Value>
         </Card>
-      </PassedCards>
-      <Score>
-        <RoundScore>0</RoundScore>
-        <RoundScore>4</RoundScore>
-        <RoundScore>0</RoundScore>
-      </Score>
-    </Player>
-  </Player4>
-  <CurrentTrick>
-    <TrickItem>
-      <Player>1</Player>
-      <Card>
         <Card>
           <Suit>Hearts</Suit>
-          <Value>Eight</Value>
+          <Value>Nine</Value>
         </Card>
-      </Card>
-    </TrickItem>
-    <TrickItem>
-      <Player>2</Player>
-      <Card>
+        <Card>
+          <Suit>Diamonds</Suit>
+          <Value>Four</Value>
+        </Card>
         <Card>
           <Suit>Diamonds</Suit>
           <Value>Jack</Value>
         </Card>
-      </Card>
-    </TrickItem>
-    <TrickItem>
-      <Player>3</Player>
-      <Card>
         <Card>
-          <Suit>Spades</Suit>
-          <Value>King</Value>
+          <Suit>Hearts</Suit>
+          <Value>Eight</Value>
         </Card>
-      </Card>
-    </TrickItem>
-    <TrickItem>
-      <Player>0</Player>
-      <Card>
+      </Hand>
+      <PassedCards>
         <Card>
-          <Suit>Clubs</Suit>
+          <Suit>Hearts</Suit>
           <Value>Ace</Value>
         </Card>
-      </Card>
-    </TrickItem>
-  </CurrentTrick>
+        <Card>
+          <Suit>Diamonds</Suit>
+          <Value>King</Value>
+        </Card>
+        <Card>
+          <Suit>Spades</Suit>
+          <Value>Jack</Value>
+        </Card>
+      </PassedCards>
+      <Score>
+        <RoundScore>13</RoundScore>
+      </Score>
+    </Player>
+  </Player4>
+  <CurrentTrick />
   <TrickHistory>
     <Trick>
       <TrickItem>
-        <Player>2</Player>
+        <Player>0</Player>
         <Card>
           <Card>
             <Suit>Clubs</Suit>
@@ -169,49 +204,11 @@
         </Card>
       </TrickItem>
       <TrickItem>
-        <Player>3</Player>
-        <Card>
-          <Card>
-            <Suit>Clubs</Suit>
-            <Value>Five</Value>
-          </Card>
-        </Card>
-      </TrickItem>
-      <TrickItem>
-        <Player>0</Player>
-        <Card>
-          <Card>
-            <Suit>Clubs</Suit>
-            <Value>Jack</Value>
-          </Card>
-        </Card>
-      </TrickItem>
-      <TrickItem>
         <Player>1</Player>
         <Card>
           <Card>
-            <Suit>Spades</Suit>
-            <Value>Four</Value>
-          </Card>
-        </Card>
-      </TrickItem>
-    </Trick>
-    <Trick>
-      <TrickItem>
-        <Player>0</Player>
-        <Card>
-          <Card>
-            <Suit>Spades</Suit>
-            <Value>Nine</Value>
-          </Card>
-        </Card>
-      </TrickItem>
-      <TrickItem>
-        <Player>1</Player>
-        <Card>
-          <Card>
-            <Suit>Spades</Suit>
-            <Value>Five</Value>
+            <Suit>Clubs</Suit>
+            <Value>Three</Value>
           </Card>
         </Card>
       </TrickItem>
@@ -219,8 +216,8 @@
         <Player>2</Player>
         <Card>
           <Card>
-            <Suit>Spades</Suit>
-            <Value>Ace</Value>
+            <Suit>Clubs</Suit>
+            <Value>Queen</Value>
           </Card>
         </Card>
       </TrickItem>
@@ -228,45 +225,7 @@
         <Player>3</Player>
         <Card>
           <Card>
-            <Suit>Spades</Suit>
-            <Value>Jack</Value>
-          </Card>
-        </Card>
-      </TrickItem>
-    </Trick>
-    <Trick>
-      <TrickItem>
-        <Player>2</Player>
-        <Card>
-          <Card>
-            <Suit>Diamonds</Suit>
-            <Value>Six</Value>
-          </Card>
-        </Card>
-      </TrickItem>
-      <TrickItem>
-        <Player>3</Player>
-        <Card>
-          <Card>
-            <Suit>Diamonds</Suit>
-            <Value>Four</Value>
-          </Card>
-        </Card>
-      </TrickItem>
-      <TrickItem>
-        <Player>0</Player>
-        <Card>
-          <Card>
-            <Suit>Diamonds</Suit>
-            <Value>Eight</Value>
-          </Card>
-        </Card>
-      </TrickItem>
-      <TrickItem>
-        <Player>1</Player>
-        <Card>
-          <Card>
-            <Suit>Diamonds</Suit>
+            <Suit>Clubs</Suit>
             <Value>Seven</Value>
           </Card>
         </Card>
@@ -274,7 +233,7 @@
     </Trick>
     <Trick>
       <TrickItem>
-        <Player>0</Player>
+        <Player>2</Player>
         <Card>
           <Card>
             <Suit>Clubs</Suit>
@@ -283,57 +242,39 @@
         </Card>
       </TrickItem>
       <TrickItem>
-        <Player>1</Player>
+        <Player>3</Player>
         <Card>
           <Card>
-            <Suit>Hearts</Suit>
-            <Value>Six</Value>
-          </Card>
-        </Card>
-      </TrickItem>
-      <TrickItem>
-        <Player>2</Player>
-        <Card>
-          <Card>
-            <Suit>Clubs</Suit>
+            <Suit>Spades</Suit>
             <Value>Eight</Value>
           </Card>
         </Card>
       </TrickItem>
       <TrickItem>
-        <Player>3</Player>
+        <Player>0</Player>
         <Card>
           <Card>
             <Suit>Clubs</Suit>
-            <Value>Queen</Value>
+            <Value>Four</Value>
+          </Card>
+        </Card>
+      </TrickItem>
+      <TrickItem>
+        <Player>1</Player>
+        <Card>
+          <Card>
+            <Suit>Clubs</Suit>
+            <Value>Five</Value>
           </Card>
         </Card>
       </TrickItem>
     </Trick>
     <Trick>
       <TrickItem>
-        <Player>0</Player>
-        <Card>
-          <Card>
-            <Suit>Hearts</Suit>
-            <Value>Two</Value>
-          </Card>
-        </Card>
-      </TrickItem>
-      <TrickItem>
-        <Player>1</Player>
-        <Card>
-          <Card>
-            <Suit>Hearts</Suit>
-            <Value>Four</Value>
-          </Card>
-        </Card>
-      </TrickItem>
-      <TrickItem>
         <Player>2</Player>
         <Card>
           <Card>
-            <Suit>Hearts</Suit>
+            <Suit>Spades</Suit>
             <Value>Jack</Value>
           </Card>
         </Card>
@@ -342,71 +283,13 @@
         <Player>3</Player>
         <Card>
           <Card>
-            <Suit>Hearts</Suit>
-            <Value>Nine</Value>
-          </Card>
-        </Card>
-      </TrickItem>
-    </Trick>
-    <Trick>
-      <TrickItem>
-        <Player>2</Player>
-        <Card>
-          <Card>
-            <Suit>Diamonds</Suit>
-            <Value>Two</Value>
-          </Card>
-        </Card>
-      </TrickItem>
-      <TrickItem>
-        <Player>3</Player>
-        <Card>
-          <Card>
-            <Suit>Diamonds</Suit>
-            <Value>Nine</Value>
+            <Suit>Spades</Suit>
+            <Value>Queen</Value>
           </Card>
         </Card>
       </TrickItem>
       <TrickItem>
         <Player>0</Player>
-        <Card>
-          <Card>
-            <Suit>Diamonds</Suit>
-            <Value>Ace</Value>
-          </Card>
-        </Card>
-      </TrickItem>
-      <TrickItem>
-        <Player>1</Player>
-        <Card>
-          <Card>
-            <Suit>Diamonds</Suit>
-            <Value>Ten</Value>
-          </Card>
-        </Card>
-      </TrickItem>
-    </Trick>
-    <Trick>
-      <TrickItem>
-        <Player>0</Player>
-        <Card>
-          <Card>
-            <Suit>Spades</Suit>
-            <Value>Two</Value>
-          </Card>
-        </Card>
-      </TrickItem>
-      <TrickItem>
-        <Player>1</Player>
-        <Card>
-          <Card>
-            <Suit>Spades</Suit>
-            <Value>Eight</Value>
-          </Card>
-        </Card>
-      </TrickItem>
-      <TrickItem>
-        <Player>2</Player>
         <Card>
           <Card>
             <Suit>Spades</Suit>
@@ -415,30 +298,21 @@
         </Card>
       </TrickItem>
       <TrickItem>
-        <Player>3</Player>
+        <Player>1</Player>
         <Card>
           <Card>
             <Suit>Spades</Suit>
-            <Value>Three</Value>
+            <Value>Five</Value>
           </Card>
         </Card>
       </TrickItem>
     </Trick>
     <Trick>
       <TrickItem>
-        <Player>2</Player>
-        <Card>
-          <Card>
-            <Suit>Clubs</Suit>
-            <Value>Four</Value>
-          </Card>
-        </Card>
-      </TrickItem>
-      <TrickItem>
         <Player>3</Player>
         <Card>
           <Card>
-            <Suit>Clubs</Suit>
+            <Suit>Diamonds</Suit>
             <Value>Six</Value>
           </Card>
         </Card>
@@ -447,8 +321,8 @@
         <Player>0</Player>
         <Card>
           <Card>
-            <Suit>Clubs</Suit>
-            <Value>Seven</Value>
+            <Suit>Diamonds</Suit>
+            <Value>Three</Value>
           </Card>
         </Card>
       </TrickItem>
@@ -457,65 +331,27 @@
         <Card>
           <Card>
             <Suit>Diamonds</Suit>
-            <Value>Three</Value>
-          </Card>
-        </Card>
-      </TrickItem>
-    </Trick>
-    <Trick>
-      <TrickItem>
-        <Player>0</Player>
-        <Card>
-          <Card>
-            <Suit>Hearts</Suit>
-            <Value>Ten</Value>
+            <Value>Eight</Value>
           </Card>
         </Card>
       </TrickItem>
       <TrickItem>
-        <Player>1</Player>
+        <Player>2</Player>
         <Card>
           <Card>
-            <Suit>Hearts</Suit>
+            <Suit>Diamonds</Suit>
             <Value>Ace</Value>
           </Card>
         </Card>
       </TrickItem>
-      <TrickItem>
-        <Player>2</Player>
-        <Card>
-          <Card>
-            <Suit>Hearts</Suit>
-            <Value>Three</Value>
-          </Card>
-        </Card>
-      </TrickItem>
-      <TrickItem>
-        <Player>3</Player>
-        <Card>
-          <Card>
-            <Suit>Clubs</Suit>
-            <Value>Nine</Value>
-          </Card>
-        </Card>
-      </TrickItem>
     </Trick>
     <Trick>
       <TrickItem>
-        <Player>1</Player>
-        <Card>
-          <Card>
-            <Suit>Hearts</Suit>
-            <Value>Queen</Value>
-          </Card>
-        </Card>
-      </TrickItem>
-      <TrickItem>
         <Player>2</Player>
         <Card>
           <Card>
-            <Suit>Diamonds</Suit>
-            <Value>Five</Value>
+            <Suit>Clubs</Suit>
+            <Value>Six</Value>
           </Card>
         </Card>
       </TrickItem>
@@ -523,8 +359,8 @@
         <Player>3</Player>
         <Card>
           <Card>
-            <Suit>Clubs</Suit>
-            <Value>Ten</Value>
+            <Suit>Hearts</Suit>
+            <Value>Two</Value>
           </Card>
         </Card>
       </TrickItem>
@@ -532,8 +368,17 @@
         <Player>0</Player>
         <Card>
           <Card>
-            <Suit>Hearts</Suit>
-            <Value>Seven</Value>
+            <Suit>Clubs</Suit>
+            <Value>Eight</Value>
+          </Card>
+        </Card>
+      </TrickItem>
+      <TrickItem>
+        <Player>1</Player>
+        <Card>
+          <Card>
+            <Suit>Clubs</Suit>
+            <Value>Jack</Value>
           </Card>
         </Card>
       </TrickItem>
@@ -541,15 +386,6 @@
     <Trick>
       <TrickItem>
         <Player>1</Player>
-        <Card>
-          <Card>
-            <Suit>Hearts</Suit>
-            <Value>King</Value>
-          </Card>
-        </Card>
-      </TrickItem>
-      <TrickItem>
-        <Player>2</Player>
         <Card>
           <Card>
             <Suit>Spades</Suit>
@@ -558,11 +394,49 @@
         </Card>
       </TrickItem>
       <TrickItem>
+        <Player>2</Player>
+        <Card>
+          <Card>
+            <Suit>Spades</Suit>
+            <Value>Nine</Value>
+          </Card>
+        </Card>
+      </TrickItem>
+      <TrickItem>
         <Player>3</Player>
         <Card>
           <Card>
-            <Suit>Clubs</Suit>
-            <Value>Three</Value>
+            <Suit>Spades</Suit>
+            <Value>Two</Value>
+          </Card>
+        </Card>
+      </TrickItem>
+      <TrickItem>
+        <Player>0</Player>
+        <Card>
+          <Card>
+            <Suit>Spades</Suit>
+            <Value>Four</Value>
+          </Card>
+        </Card>
+      </TrickItem>
+    </Trick>
+    <Trick>
+      <TrickItem>
+        <Player>2</Player>
+        <Card>
+          <Card>
+            <Suit>Hearts</Suit>
+            <Value>Ace</Value>
+          </Card>
+        </Card>
+      </TrickItem>
+      <TrickItem>
+        <Player>3</Player>
+        <Card>
+          <Card>
+            <Suit>Hearts</Suit>
+            <Value>Ten</Value>
           </Card>
         </Card>
       </TrickItem>
@@ -571,7 +445,16 @@
         <Card>
           <Card>
             <Suit>Hearts</Suit>
-            <Value>Five</Value>
+            <Value>Queen</Value>
+          </Card>
+        </Card>
+      </TrickItem>
+      <TrickItem>
+        <Player>1</Player>
+        <Card>
+          <Card>
+            <Suit>Hearts</Suit>
+            <Value>Jack</Value>
           </Card>
         </Card>
       </TrickItem>

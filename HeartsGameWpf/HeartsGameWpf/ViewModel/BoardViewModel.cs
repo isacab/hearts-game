@@ -11,7 +11,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using System.IO;
 
 namespace HeartsGameWpf.ViewModel
 {
@@ -19,7 +18,6 @@ namespace HeartsGameWpf.ViewModel
     {
         private readonly GameManager gameManager;
         private readonly RandomAiPlayer aiPlayer;
-        private readonly FileSystemWatcher watcher;
 
         private const int clearTrickDelay = 1000;
         private const int aiDelay = 250;
@@ -40,18 +38,7 @@ namespace HeartsGameWpf.ViewModel
 
             aiPlayer = new RandomAiPlayer();
 
-            watcher = new FileSystemWatcher();
-            watcher.Changed += OnWatcherChanged;
-            watcher.Path = Directory.GetCurrentDirectory();
-            watcher.Filter = "thefiletowatch.txt";
-            watcher.EnableRaisingEvents = true;
-
             Update();
-        }
-
-        private void OnWatcherChanged(object sender, FileSystemEventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         public Game Game
@@ -107,8 +94,6 @@ namespace HeartsGameWpf.ViewModel
             {
                 delayedAction.Cancel();
             }
-
-            gameManager.Save();
 
             if(e.Action != GameAction.PassCards)
             {
