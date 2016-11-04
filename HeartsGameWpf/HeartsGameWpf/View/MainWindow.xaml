@@ -18,7 +18,11 @@
                     <MenuItem Header="_Score" Command="{Binding Path=MainViewModel.ScoreCommand}"/>
                 </MenuItem>
             </Menu>
-            
+
+            <StatusBar DockPanel.Dock="Bottom">
+                <TextBlock Text="{Binding Path=MainViewModel.StatusMessage}" VerticalAlignment="Center" />
+            </StatusBar>
+
             <Grid>
                 <Controls:BoardControl x:Name="BoardControl" BoardViewModel="{ Binding Path=MainViewModel.Board }"/>
                 

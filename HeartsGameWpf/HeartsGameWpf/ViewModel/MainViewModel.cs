@@ -23,6 +23,7 @@ namespace HeartsGameWpf.ViewModel
         private SaveHandlerErrorModalViewModel saveHandlerErrorModal;
         private bool showScoreModal = false;
         private bool showSaveHandlerErrorModal = false;
+        private string statusMessage;
         private FileSystemWatcher watcher;
         private Action lastSaveFileAction;
 
@@ -45,7 +46,7 @@ namespace HeartsGameWpf.ViewModel
             else
                 NewGame(null);
 
-            UpdateShowScoreModal();
+            UpdateAll();
         }
 
         public BoardViewModel Board
@@ -61,6 +62,12 @@ namespace HeartsGameWpf.ViewModel
         public SaveHandlerErrorModalViewModel SaveHandlerErrorModal
         {
             get { return saveHandlerErrorModal; }
+        }
+
+        public string StatusMessage
+        {
+            get { return statusMessage; }
+            private set { SetValue(ref statusMessage, value); }
         }
 
         public bool ShowScoreModal
@@ -156,7 +163,7 @@ namespace HeartsGameWpf.ViewModel
         {
             if(watcher.EnableRaisingEvents)
                 SaveGame();
-            UpdateShowScoreModal();
+            UpdateAll();
         }
 
         private void OnWatcherChanged(object sender, FileSystemEventArgs e)
@@ -175,6 +182,33 @@ namespace HeartsGameWpf.ViewModel
                 // Sync with UI thread
                 App.Current.Dispatcher.Invoke(da.Execute);
             }
+        }
+
+        private void UpdateAll()
+        {
+            UpdateStatusMessage();
+            UpdateShowScoreModal();
+        }
+
+        private void UpdateStatusMessage()
+        {
+            Rules rules = gameManager.Rules;
+            Game game = gameManager.Game;
+            string msg = "";
+
+            if(game.Phase == HeartsPhase.PassCards)
+            {
+                msg = "Select 3 cards to pass and then press the button.";
+            }
+            else if(game.Phase == HeartsPhase.Tricks && game.CurrentPlayer != -1)
+            {
+                PlayerViewModel curPlayer = Board.GetPlayerByIndex(game.CurrentPlayer);
+                msg = "Current player: " + curPlayer.Name;
+                if (curPlayer is HumanPlayerViewModel)
+                    msg += " - Select a card to play.";
+            }
+
+            StatusMessage = msg;
         }
 
         private void UpdateShowScoreModal()
@@ -200,13 +234,13 @@ namespace HeartsGameWpf.ViewModel
             {
                 gameManager.Load();
             }
-            catch (Exception ex)
+            catch (IOException ex)
             {
-                CloseModals();
-                ShowSaveHandlerErrorModal = true;
-                SaveHandlerErrorModal.Title = "Load Error";
-                SaveHandlerErrorModal.Message = ex.Message;
-                Console.WriteLine(ex.Message);
+                DisplaySaveHandlerErrorModal("Load Error", ex.Message);
+            }
+            catch (SaveHandlerException ex)
+            {
+                DisplaySaveHandlerErrorModal("Load Error", ex.Message);
             }
             finally
             {
@@ -224,18 +258,27 @@ namespace HeartsGameWpf.ViewModel
             {
                 gameManager.Save();
             }
-            catch (Exception ex)
+            catch (IOException ex)
             {
-                CloseModals();
-                ShowSaveHandlerErrorModal = true;
-                SaveHandlerErrorModal.Title = "Save Error";
-                SaveHandlerErrorModal.Message = ex.Message;
-                Console.WriteLine(ex.Message);
+                DisplaySaveHandlerErrorModal("Save Error", ex.Message);
+            }
+            catch (SaveHandlerException ex)
+            {
+                DisplaySaveHandlerErrorModal("Save Error", ex.Message);
             }
             finally
             {
                 watcher.EnableRaisingEvents = true;
             }
+        }
+
+        private void DisplaySaveHandlerErrorModal(string title, string message)
+        {
+            CloseModals();
+            ShowSaveHandlerErrorModal = true;
+            SaveHandlerErrorModal.Title = title;
+            SaveHandlerErrorModal.Message = message;
+            Console.WriteLine(message);
         }
     }
 }

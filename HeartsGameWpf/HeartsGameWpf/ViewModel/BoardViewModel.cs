@@ -87,6 +87,42 @@ namespace HeartsGameWpf.ViewModel
             get { return new ActionCommand<object>((x) => { gameManager.ClearTrick(); }); }
         }
 
+        public PlayerViewModel GetPlayerByIndex(int playerIndex)
+        {
+            switch(playerIndex)
+            {
+                case 0: return player1;
+                case 1: return player2;
+                case 2: return player3;
+                case 3: return player4;
+                default: throw new ArgumentException("Player index is out of range");
+            }
+        }
+
+        public bool IsHumanPlayer(int playerIndex)
+        {
+            bool rv = false;
+            try
+            {
+                rv = GetPlayerByIndex(playerIndex) is HumanPlayerViewModel;
+            }
+            catch (Exception) { }
+
+            return rv;
+        }
+
+        public bool IsAIPlayer(int playerIndex)
+        {
+            bool rv = false;
+            try
+            {
+                rv = GetPlayerByIndex(playerIndex) is HumanPlayerViewModel == false;
+            }
+            catch (Exception) { }
+
+            return rv;
+        }
+
         private void OnGameCanged(object sender, GameChangedEventArgs e)
         {
             // Cancel delayed action
@@ -95,7 +131,7 @@ namespace HeartsGameWpf.ViewModel
                 delayedAction.Cancel();
             }
 
-            if(e.Action != GameAction.PassCards)
+            if(!(e.Action == GameAction.PassCards && IsAIPlayer(e.Player))) // Do not update when AI makes a pass
             {
                 Update();
             }
@@ -109,7 +145,7 @@ namespace HeartsGameWpf.ViewModel
             // Check if trick is finished
             if (gameManager.Rules.TrickIsFinished(Game.CurrentTrick))
             {
-                LastTrickWinner = gameManager.Rules.TrickWinner(Game.CurrentTrick);
+                LastTrickWinner = rules.TrickWinner(Game.CurrentTrick);
             }
             else
             {
@@ -122,20 +158,24 @@ namespace HeartsGameWpf.ViewModel
             {
                 int player = i;
 
-                if (rules.CanPassCards(player))
+                // Check if player is an AI player
+                if(GetPlayerByIndex(player) is HumanPlayerViewModel == false)
                 {
-                    aiPlayer.MakeAction(gameManager, player);
-                }
-
-                if (rules.CanPlay(player))
-                {
-                    delayedAction = new DelayedAction();
-                    delayedAction.Delay = aiDelay; //debug (rules.NextPlayer() == 0) ? 0 : 250;
-                    delayedAction.Action = new Action(() =>
+                    if (rules.CanPassCards(player))
                     {
                         aiPlayer.MakeAction(gameManager, player);
-                    });
-                    delayedAction.Execute();
+                    }
+
+                    if (rules.CanPlay(player))
+                    {
+                        delayedAction = new DelayedAction();
+                        delayedAction.Delay = aiDelay;
+                        delayedAction.Action = new Action(() =>
+                        {
+                            aiPlayer.MakeAction(gameManager, player);
+                        });
+                        delayedAction.Execute();
+                    }
                 }
             }
 
