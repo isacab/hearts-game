@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AI\SimpleAIPlayer.cs" />
+    <Compile Include="AI\IAIPlayer.cs" />
     <Compile Include="AI\RandomAIPlayer.cs" />
     <Compile Include="DataObjects\Card.cs" />
     <Compile Include="DataObjects\DataObject.cs" />

@@ -24,123 +24,8 @@
                           ItemsSource="{Binding Path=BoardViewModel.Game.CurrentTrick}"
                           Style="{StaticResource TrickItemsControlStyle}"
                           VerticalAlignment="Center" 
-                          HorizontalAlignment="Center">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <DataTemplate.Resources>
-                            <sys:TimeSpan x:Key="TrickEndBeginTime">0:0:0.8</sys:TimeSpan>
-                            <Duration x:Key="TrickEndDuration">0:0:0.2</Duration>
-                        </DataTemplate.Resources>
-                        <Canvas Height="{StaticResource card_height}" 
-                                Width="{StaticResource card_width}">
-                            <Border Background="Black">
-                                <Border.Style>
-                                    <Style TargetType="Border">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Player}" Value="0">
-                                                <Setter Property="RenderTransform">
-                                                    <Setter.Value>
-                                                        <TranslateTransform X="0" Y="38"/>
-                                                    </Setter.Value>
-                                                </Setter>
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding Player}" Value="1">
-                                                <Setter Property="RenderTransform">
-                                                    <Setter.Value>
-                                                        <TranslateTransform X="-61" Y="0"/>
-                                                    </Setter.Value>
-                                                </Setter>
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding Player}" Value="2">
-                                                <Setter Property="RenderTransform">
-                                                    <Setter.Value>
-                                                        <TranslateTransform X="0" Y="-38"/>
-                                                    </Setter.Value>
-                                                </Setter>
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding Player}" Value="3">
-                                                <Setter Property="RenderTransform">
-                                                    <Setter.Value>
-                                                        <TranslateTransform X="61" Y="0"/>
-                                                    </Setter.Value>
-                                                </Setter>
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding Path=DataContext.BoardViewModel.LastTrickWinner, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
-                                                         Value="0">
-                                                <DataTrigger.EnterActions>
-                                                    <BeginStoryboard>
-                                                        <Storyboard>
-                                                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
-                                                                             To="500"
-                                                                             BeginTime="{StaticResource TrickEndBeginTime}"
-                                                                             Duration="{StaticResource TrickEndDuration}"/>
-                                                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
-                                                                             To="0"
-                                                                             BeginTime="{StaticResource TrickEndBeginTime}"
-                                                                             Duration="{StaticResource TrickEndDuration}"/>
-                                                        </Storyboard>
-                                                    </BeginStoryboard>
-                                                </DataTrigger.EnterActions>
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding Path=DataContext.BoardViewModel.LastTrickWinner, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
-                                                         Value="1">
-                                                <DataTrigger.EnterActions>
-                                                    <BeginStoryboard>
-                                                        <Storyboard>
-                                                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
-                                                                             To="-500"
-                                                                             BeginTime="{StaticResource TrickEndBeginTime}"
-                                                                             Duration="{StaticResource TrickEndDuration}"/>
-                                                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
-                                                                             To="0"
-                                                                             BeginTime="{StaticResource TrickEndBeginTime}"
-                                                                             Duration="{StaticResource TrickEndDuration}"/>
-                                                        </Storyboard>
-                                                    </BeginStoryboard>
-                                                </DataTrigger.EnterActions>
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding Path=DataContext.BoardViewModel.LastTrickWinner, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
-                                                         Value="2">
-                                                <DataTrigger.EnterActions>
-                                                    <BeginStoryboard>
-                                                        <Storyboard>
-                                                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
-                                                                             To="-500"
-                                                                             BeginTime="{StaticResource TrickEndBeginTime}"
-                                                                             Duration="{StaticResource TrickEndDuration}"/>
-                                                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
-                                                                             To="0"
-                                                                             BeginTime="{StaticResource TrickEndBeginTime}"
-                                                                             Duration="{StaticResource TrickEndDuration}"/>
-                                                        </Storyboard>
-                                                    </BeginStoryboard>
-                                                </DataTrigger.EnterActions>
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding Path=DataContext.BoardViewModel.LastTrickWinner, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
-                                                         Value="3">
-                                                <DataTrigger.EnterActions>
-                                                    <BeginStoryboard>
-                                                        <Storyboard>
-                                                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
-                                                                             To="500"
-                                                                             BeginTime="{StaticResource TrickEndBeginTime}"
-                                                                             Duration="{StaticResource TrickEndDuration}"/>
-                                                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
-                                                                             To="0"
-                                                                             BeginTime="{StaticResource TrickEndBeginTime}"
-                                                                             Duration="{StaticResource TrickEndDuration}"/>
-                                                        </Storyboard>
-                                                    </BeginStoryboard>
-                                                </DataTrigger.EnterActions>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Border.Style>
-                                <Image DataContext="{Binding Card}" Style="{StaticResource CardImage}" x:Name="CardImage"/>
-                            </Border>
-                        </Canvas>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
+                          HorizontalAlignment="Center"
+                          ItemTemplate="{StaticResource TrickItemTemplate}">
             </ItemsControl>
 
             <DockPanel VerticalAlignment="Bottom">
@@ -158,6 +43,7 @@
                     <ListBox 
                         ItemsSource="{Binding Path=BoardViewModel.Player2.SortedHand}"
                         Style="{StaticResource HandListBoxStyle}"
+                        ItemTemplate="{StaticResource HiddenHandListBoxItemTemplate}"
                         IsEnabled="False">
                     </ListBox>
                     <Grid.LayoutTransform>
@@ -172,6 +58,7 @@
                     <ListBox 
                         ItemsSource="{Binding Path=BoardViewModel.Player3.SortedHand}"
                         Style="{StaticResource HandListBoxStyle}"
+                        ItemTemplate="{StaticResource HiddenHandListBoxItemTemplate}"
                         IsEnabled="False">
                     </ListBox>
                     <Grid.LayoutTransform>
@@ -186,6 +73,7 @@
                     <ListBox 
                         ItemsSource="{Binding Path=BoardViewModel.Player4.SortedHand}"
                         Style="{StaticResource HandListBoxStyle}"
+                        ItemTemplate="{StaticResource HiddenHandListBoxItemTemplate}"
                         IsEnabled="False">
                     </ListBox>
                     <Grid.LayoutTransform>

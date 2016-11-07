@@ -161,7 +161,7 @@ namespace HeartsGameEngine
 
             if (TrickIsFinished(trick))
             {
-                CardSuit leadingSuit = trick.First().Card.Suit;
+                CardSuit leadingSuit = trick[0].Card.Suit;
                 winner = trick.Where(x => x.Card.Suit == leadingSuit)
                                 .OrderBy(x => x.Card.Value)
                                 .Last()

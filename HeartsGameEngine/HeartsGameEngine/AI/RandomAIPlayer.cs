@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HeartsGameEngine.AI
 {
-    public class RandomAiPlayer
+    public class RandomAiPlayer : IAIPlayer
     {
         public void MakeAction(GameManager gameManager, int player)
         {

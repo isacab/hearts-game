@@ -17,7 +17,7 @@ namespace HeartsGameWpf.ViewModel
     public class BoardViewModel : BaseViewModel
     {
         private readonly GameManager gameManager;
-        private readonly RandomAiPlayer aiPlayer;
+        private readonly IAIPlayer aiPlayer;
 
         private const int clearTrickDelay = 1000;
         private const int aiDelay = 250;
@@ -36,7 +36,7 @@ namespace HeartsGameWpf.ViewModel
             player3 = new PlayerViewModel(gameManager, 2);
             player4 = new PlayerViewModel(gameManager, 3);
 
-            aiPlayer = new RandomAiPlayer();
+            aiPlayer = new SimpleAIPlayer();
 
             Update();
         }
