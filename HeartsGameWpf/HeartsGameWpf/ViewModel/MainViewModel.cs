@@ -27,9 +27,12 @@ namespace HeartsGameWpf.ViewModel
         private FileSystemWatcher watcher;
         private Action lastSaveFileAction;
 
-        public MainViewModel()
+        public MainViewModel(GameManager gameManager)
         {
-            gameManager = new GameManager();
+            if (gameManager == null)
+                throw new ArgumentNullException();
+
+            this.gameManager = gameManager;
             gameManager.GameChanged += OnGameChanged;
             board = new BoardViewModel(gameManager);
             scoreModal = new ScoreModalViewModel(gameManager);

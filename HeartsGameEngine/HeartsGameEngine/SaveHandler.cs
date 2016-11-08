@@ -23,8 +23,11 @@ namespace HeartsGameEngine
 
     class SaveHandler
     {
-        public SaveHandler(string fileName = null, Game game = null)
+        public SaveHandler(string fileName, Game game)
         {
+            if (fileName == null || game == null)
+                throw new ArgumentNullException();
+
             FileName = fileName;
             Game = game;
         }
@@ -35,9 +38,6 @@ namespace HeartsGameEngine
 
         public void Save()
         {
-            if (Game == null || FileName == null)
-                return;
-
             try
             {
                 XDocument doc = new XDocument();
@@ -55,9 +55,6 @@ namespace HeartsGameEngine
 
         public void Load()
         {
-            if (Game == null || FileName == null)
-                return;
-
             try
             {
                 XDocument doc = XDocument.Load(FileName);

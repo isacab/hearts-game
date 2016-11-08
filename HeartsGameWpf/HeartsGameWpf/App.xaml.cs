@@ -1,4 +1,6 @@
-﻿using HeartsGameWpf.View;
+﻿using HeartsGameEngine;
+using HeartsGameEngine.DataObjects;
+using HeartsGameWpf.View;
 using HeartsGameWpf.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -24,8 +26,11 @@ namespace HeartsGameWpf
         {
             base.OnStartup(e);
 
+            Game game = new Game();
+            Rules rules = new Rules(game);
+            GameManager gameManager = new GameManager(game, rules);
             MainWindow mw = new MainWindow();
-            mw.MainViewModel = new MainViewModel();
+            mw.MainViewModel = new MainViewModel(gameManager);
             mw.Show();
         }
     }

@@ -19,11 +19,14 @@ namespace HeartsGameEngine
 
         #region Constructor
 
-        public GameManager()
+        public GameManager(Game game, Rules rules)
         {
-            game = new Game();
-            rules = new Rules(game);
-            saveHandler = new SaveHandler(SaveFile, game);
+            if (game == null || rules == null)
+                throw new ArgumentNullException();
+
+            this.game = game;
+            this.rules = rules;
+            this.saveHandler = new SaveHandler(SaveFile, game);
         }
 
         #endregion //Constructor
@@ -48,6 +51,9 @@ namespace HeartsGameEngine
             get { return rules; }
         }
 
+        /// <summary>
+        /// Is true when the state of the game is chagning.
+        /// </summary>
         private bool isChanging = false;
         public bool IsChanging
         {

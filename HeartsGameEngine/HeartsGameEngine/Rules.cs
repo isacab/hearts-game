@@ -96,13 +96,13 @@ namespace HeartsGameEngine
             return validCards;
         }
 
-        public bool IsPenaltyCard(Card card)
+        private bool IsPenaltyCard(Card card)
         {
             //true if Suit equals Hearts or if the card is queen of spades
             return card.Suit == CardSuit.Hearts || (card.Suit == CardSuit.Spades && card.Value == CardValue.Queen);
         }
 
-        public bool HeartsHasBeenPlayed(Game game)
+        private bool HeartsHasBeenPlayed(Game game)
         {
             return game.TrickHistory.Any(t => ContainsSuit(t, CardSuit.Hearts));
         }
