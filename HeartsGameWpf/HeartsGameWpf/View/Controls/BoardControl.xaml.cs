@@ -27,9 +27,6 @@ namespace HeartsGameWpf.View.Controls
             InitializeComponent();
 
             RootElement.DataContext = this;
-
-            //InitAnimations();
-            //SetItemTemplateOnTrickItemsControl();
         }
 
         private static readonly DependencyProperty BoardViewModelProperty
@@ -39,56 +36,6 @@ namespace HeartsGameWpf.View.Controls
         {
             get { return (BoardViewModel)GetValue(BoardViewModelProperty); }
             set { SetValue(BoardViewModelProperty, value); }
-        }
-
-        private void InitAnimations()
-        {
-            //TrickItemsControl.Triggers.Add();
-        }
-
-        private void DoubleAnimation_Completed(object sender, EventArgs e)
-        {
-            BoardViewModel.StartNewTurn.Execute(null);
-        }
-
-        private void Storyboard_Completed(object sender, EventArgs e)
-        {
-            //BoardViewModel.ClearTrick.Execute(null);
-        }
-
-        private void SetItemTemplateOnTrickItemsControl()
-        {
-            DataTemplate dataTemplate = new DataTemplate();
-            dataTemplate.DataType = typeof(TrickItem);
-
-            FrameworkElementFactory canvas = new FrameworkElementFactory(typeof(Canvas));
-            canvas.SetValue(WidthProperty, 71d);
-            canvas.SetValue(HeightProperty, 96d);
-
-            FrameworkElementFactory border = new FrameworkElementFactory(typeof(Border));
-            border.SetValue(BackgroundProperty, new SolidColorBrush(Colors.Black));
-            Style borderStyle = new Style(typeof(Border));
-            
-            border.SetValue(StyleProperty, borderStyle);
-            canvas.AppendChild(border);
-
-            FrameworkElementFactory image = new FrameworkElementFactory(typeof(Image));
-            image.SetBinding(DataContextProperty, new Binding("Card"));
-            image.SetResourceReference(StyleProperty, "CardImage");
-            border.AppendChild(image);
-
-            dataTemplate.VisualTree = canvas;
-
-            TrickItemsControl.ItemTemplate = dataTemplate;
-        }
-
-        private DataTrigger TrickItemPositionDataTrigger(int player)
-        {
-            DataTrigger trigger = new DataTrigger();
-            trigger.Binding = new Binding("Player");
-            trigger.Value = player;
-
-            return trigger;
         }
     }
 }

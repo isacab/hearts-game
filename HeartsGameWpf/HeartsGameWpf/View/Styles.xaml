@@ -32,6 +32,30 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
+    <Style x:Key="ScoreBoardCell" TargetType="TextBlock">
+        <Setter Property="Padding" Value="0,5"/>
+        <Setter Property="Width" Value="75" />
+        <Setter Property="TextAlignment" Value="Center" />
+    </Style>
+    
+    <Style x:Key="ScoreBoardHeader" TargetType="TextBlock" BasedOn="{ StaticResource ScoreBoardCell }">
+        <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+
+    <Style x:Key="ScoreBoardText" TargetType="TextBlock">
+        <Setter Property="TextAlignment" Value="Center" />
+        <Setter Property="Padding" Value="0,5"/>
+        <Setter Property="FontSize" Value="14" />
+    </Style>
+    
+    <DataTemplate x:Key="ScoreBoardDataTemplate">
+        <TextBlock Text="{Binding}" Style="{StaticResource ScoreBoardCell}" />
+    </DataTemplate>
+    
+    <DataTemplate x:Key="ScoreBoardFirstColumnDataTemplate">
+        <TextBlock Text="{Binding}" Style="{StaticResource ScoreBoardCell}" Width="50" />
+    </DataTemplate>
 
     <DataTemplate x:Key="TrickItemTemplate">
         <DataTemplate.Resources>

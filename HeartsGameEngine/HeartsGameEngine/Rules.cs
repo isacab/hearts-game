@@ -13,7 +13,7 @@ namespace HeartsGameEngine
 
     public class Rules
     {
-        public const int EndScore = 30;
+        public const int EndScore = 25;
 
         public Rules(Game game)
         {
@@ -211,6 +211,22 @@ namespace HeartsGameEngine
         public bool GameOver()
         {
             return game.Phase == HeartsPhase.None && game.GetPlayers().Any(x => x.TotalScore() >= EndScore);
+        }
+
+        public int Winner()
+        {
+            if (!GameOver())
+                return -1;
+
+            int winner = -1;
+            var players = game.GetPlayers();
+            int minScore = players.Min(x => x.TotalScore());
+            IEnumerable<Player> winners = players.Where(x => x.TotalScore() == minScore);
+
+            if (winners.Count() == 1)
+                winner = game.GetIndexByPlayer(winners.First());
+
+            return winner;
         }
 
         public int NextPlayer()

@@ -21,20 +21,19 @@ namespace HeartsGameWpf.ViewModel
             player3 = new PlayerViewModel(gameManager, 2);
             player4 = new PlayerViewModel(gameManager, 3);
 
-            gameManager.Game.PropertyChanged += OnGamePropertyChanged;
+            gameManager.GameChanged += OnGameChanged;
         }
 
-        private void OnGamePropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void OnGameChanged(object sender, GameChangedEventArgs e)
         {
-            if(e.PropertyName == "RoundCounter")
-            {
-                RaisePropertyChanged("Rounds");
-            }
+            UpdateAll();
         }
 
+        private IEnumerable<int> rounds;
         public IEnumerable<int> Rounds
         {
-            get { return Enumerable.Range(1, gameManager.Game.RoundCounter); }
+            get { return rounds; }
+            private set { SetValue(ref rounds, value); }
         }
 
         private readonly PlayerViewModel player1;
@@ -59,6 +58,67 @@ namespace HeartsGameWpf.ViewModel
         public PlayerViewModel Player4
         {
             get { return player4; }
+        }
+
+        private string winner;
+        public string Winner
+        {
+            get { return winner; }
+            private set { SetValue(ref winner, value); }
+        }
+
+        private bool gameOver;
+        public bool GameOver
+        {
+            get { return gameOver; }
+            private set { SetValue(ref gameOver, value); }
+        }
+
+        private void UpdateAll()
+        {
+            UpdateRounds();
+            UpdateGameOver();
+            UpdateWinner();
+        }
+
+        private void UpdateRounds()
+        {
+            Game game = gameManager.Game;
+
+            if(Rounds == null || Rounds.Count() != game.RoundCounter)
+            {
+                Rounds = Enumerable.Range(1, game.RoundCounter);
+            }
+        }
+
+        private void UpdateGameOver()
+        {
+            GameOver = gameManager.Rules.GameOver();
+        }
+
+        private void UpdateWinner()
+        {
+            Rules rules = gameManager.Rules;
+            string w = "";
+
+            if (rules.GameOver())
+            {
+                switch(rules.Winner())
+                {
+                    case 0: w = Player1.Name;
+                        break;
+                    case 1: w = Player2.Name;
+                        break;
+                    case 2: w = Player3.Name;
+                        break;
+                    case 3: w = Player4.Name;
+                        break;
+                    default: w = "Tie";
+                        break;
+                }
+            }
+
+            Winner = w;
         }
     }
 }

@@ -7,22 +7,6 @@
              d:DesignHeight="100" d:DesignWidth="300"
              Width="350">
 
-    <UserControl.Resources>
-        <Style x:Key="ScoreBoardCell" TargetType="TextBlock">
-            <Setter Property="Padding" Value="0,5"/>
-            <Setter Property="Width" Value="75" />
-            <Setter Property="TextAlignment" Value="Center" />
-        </Style>
-        <Style x:Key="ScoreBoardHeader" TargetType="TextBlock" BasedOn="{ StaticResource ScoreBoardCell }">
-            <Setter Property="FontWeight" Value="Bold" />
-        </Style>
-        <DataTemplate x:Key="ScoreBoardDataTemplate">
-            <TextBlock Text="{Binding}" Style="{StaticResource ScoreBoardCell}" />
-        </DataTemplate>
-        <DataTemplate x:Key="ScoreBoardFirstColumnDataTemplate">
-            <TextBlock Text="{Binding}" Style="{StaticResource ScoreBoardCell}" Width="50" />
-        </DataTemplate>
-    </UserControl.Resources>
     <StackPanel  x:Name="ScoreBoard">
         <!-- Header -->
         <StackPanel Orientation="Horizontal">
@@ -70,5 +54,8 @@
             <TextBlock Text="{Binding Path=Player3.TotalScore}" Style="{StaticResource ScoreBoardHeader}" />
             <TextBlock Text="{Binding Path=Player4.TotalScore}" Style="{StaticResource ScoreBoardHeader}" />
         </StackPanel>
+        <TextBlock Visibility="{Binding ScoreBoardViewModel.GameOver, Converter={StaticResource VisibilityConverter}}"
+                   Text="{Binding ScoreBoardViewModel.Winner, StringFormat='Winner: {0}'}"
+                   Style="{StaticResource ScoreBoardText}"/>
     </StackPanel>
 </UserControl>
