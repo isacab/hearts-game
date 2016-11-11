@@ -43,7 +43,6 @@
                     <ListBox 
                         ItemsSource="{Binding Path=BoardViewModel.Player2.SortedHand}"
                         Style="{StaticResource HandListBoxStyle}"
-                        ItemTemplate="{StaticResource HiddenHandListBoxItemTemplate}"
                         IsEnabled="False">
                     </ListBox>
                     <Grid.LayoutTransform>
@@ -58,7 +57,6 @@
                     <ListBox 
                         ItemsSource="{Binding Path=BoardViewModel.Player3.SortedHand}"
                         Style="{StaticResource HandListBoxStyle}"
-                        ItemTemplate="{StaticResource HiddenHandListBoxItemTemplate}"
                         IsEnabled="False">
                     </ListBox>
                     <Grid.LayoutTransform>
@@ -73,7 +71,6 @@
                     <ListBox 
                         ItemsSource="{Binding Path=BoardViewModel.Player4.SortedHand}"
                         Style="{StaticResource HandListBoxStyle}"
-                        ItemTemplate="{StaticResource HiddenHandListBoxItemTemplate}"
                         IsEnabled="False">
                     </ListBox>
                     <Grid.LayoutTransform>

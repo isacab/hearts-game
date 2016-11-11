@@ -9,26 +9,9 @@ using System.Threading.Tasks;
 
 namespace HeartsGameEngine.AI
 {
-    public class RandomAiPlayer : IAIPlayer
+    public class RandomAiPlayer : AIPlayer
     {
-        public void MakeAction(GameManager gameManager, int player)
-        {
-            Rules rules = gameManager.Rules;
-
-            if (rules.CanPassCards(player))
-            {
-                List<Card> cards = GetCardsToPass(gameManager, player);
-                gameManager.PassCards(player, cards);
-            }
-
-            if (rules.CanPlay(player))
-            {
-                Card card = GetCardsToPlay(gameManager, player);
-                gameManager.Play(player, card);
-            }
-        }
-
-        private List<Card> GetCardsToPass(GameManager gameManager, int player)
+        protected override List<Card> GetCardsToPass(GameManager gameManager, int player)
         {
             Game game = gameManager.Game;
             IList<Card> validHand = gameManager.Rules.ValidCards(player);
@@ -43,7 +26,7 @@ namespace HeartsGameEngine.AI
             return cards;
         }
 
-        private Card GetCardsToPlay(GameManager gameManager, int player)
+        protected override Card GetCardsToPlay(GameManager gameManager, int player)
         {
             Game game = gameManager.Game;
             IList<Card> validHand = gameManager.Rules.ValidCards(player);

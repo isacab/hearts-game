@@ -8,26 +8,9 @@ using System.Threading.Tasks;
 
 namespace HeartsGameEngine.AI
 {
-    public class SimpleAIPlayer : IAIPlayer
+    public class SimpleAIPlayer : AIPlayer
     {
-        public void MakeAction(GameManager gameManager, int player)
-        {
-            Rules rules = gameManager.Rules;
-
-            if (rules.CanPassCards(player))
-            {
-                List<Card> cards = GetCardsToPass(gameManager, player);
-                gameManager.PassCards(player, cards);
-            }
-
-            if (rules.CanPlay(player))
-            {
-                Card card = GetCardsToPlay(gameManager, player);
-                gameManager.Play(player, card);
-            }
-        }
-
-        private List<Card> GetCardsToPass(GameManager gameManager, int player)
+        protected override List<Card> GetCardsToPass(GameManager gameManager, int player)
         {
             Game game = gameManager.Game;
             IList<Card> validHand = gameManager.Rules.ValidCards(player);
@@ -49,40 +32,122 @@ namespace HeartsGameEngine.AI
             return cards;
         }
 
-        private Card GetCardsToPlay(GameManager gameManager, int player)
+        protected override Card GetCardsToPlay(GameManager gameManager, int playerIndex)
         {
+            Card card = null;
             Game game = gameManager.Game;
-            IList<Card> validHand = gameManager.Rules.ValidCards(player);
+            Player player = game.GetPlayerByIndex(playerIndex);
+            IList<Card> validHand = gameManager.Rules.ValidCards(playerIndex);
+            IList<Card> hand = game.GetPlayerByIndex(playerIndex).Hand;
+            IList<Card> playedCards = GetPlayedCards(game);
+            IList<Card> oponentsCards = GetOponentsCards(game, playerIndex);
             var currentTrick = game.CurrentTrick;
-            int rnd = HelperMethods.GetRandomNumber(0, validHand.Count() - 1);
-            Card card = validHand.ElementAt(rnd);
-
+            Player potentialMoonShooter = PotentialMoonShooter(game);
             Card queenOfSpades = validHand.FirstOrDefault(x => x.Suit == CardSuit.Spades && x.Value == CardValue.Queen);
+            Card kingOfSpades = validHand.FirstOrDefault(x => x.Suit == CardSuit.Spades && x.Value == CardValue.King);
+            Card aceOfSpades = validHand.FirstOrDefault(x => x.Suit == CardSuit.Spades && x.Value == CardValue.Ace);
+            bool heartsHasBeenPlayed = gameManager.Rules.HeartsHasBeenPlayed();
 
-            if(CanShootTheMoon(gameManager, player))
+            if(game.TrickHistory.Count == 0) //first trick
             {
-                card = GetOffensiveCard(gameManager, player);
+                card = validHand.OrderByDescending(x => x.Value).First();
+            }
+            else if (ShootTheMoon(gameManager, playerIndex))
+            {
+                card = GetOffensiveCard(gameManager, playerIndex);
             }
             else if (queenOfSpades != null && CanDumpCard(game, queenOfSpades))
             {
                 card = queenOfSpades;
             }
-            else if(CanBreakMoonShooter(game, validHand, player))
+            else if (aceOfSpades != null && CanDumpCard(game, aceOfSpades))
+            {
+                card = queenOfSpades;
+            }
+            else if (kingOfSpades != null && CanDumpCard(game, kingOfSpades))
+            {
+                card = queenOfSpades;
+            }
+            else if(CanBreakMoonShooter(potentialMoonShooter, player, validHand))
             {
                 card = validHand.Where(x => x.Suit == CardSuit.Hearts).OrderByDescending(x => x.Value).First();
             }
             else
             {
-                card = GetDefensiveCard(game, validHand, player);
+                Card qsCard = new Card(CardSuit.Spades, CardValue.Queen);
+                bool hasQueenOfSpades = hand.Any(x => x.Equals(qsCard));
+                TrickItem high = High(game.CurrentTrick);
+
+                if(hasQueenOfSpades)
+                {
+                    if (high == null)
+                        card = validHand.Where(x => x.Suit != CardSuit.Spades).OrderBy(x => x.Value).First();
+                    else
+                        card = validHand.Where(x => x.Value < high.Card.Value || x.Suit != high.Card.Suit && !x.Equals(qsCard))
+                                                .OrderByDescending(x => x.Value)
+                                                .FirstOrDefault();
+                }
+                else
+                {
+                    if (high == null)
+                        card = validHand.OrderBy(x => x.Value).First();
+                    else
+                        card = validHand.Where(x => x.Value < high.Card.Value || x.Suit != high.Card.Suit)
+                                                .OrderByDescending(x => x.Value)
+                                                .FirstOrDefault();
+                }
+
+                if (card == null)
+                {
+                    if (game.CurrentTrick.Count == 3)
+                        card = validHand.OrderByDescending(x => x.Value).First();
+                    else
+                    {
+                        int rnd = HelperMethods.GetRandomNumber(0, validHand.Count() - 1);
+                        card = validHand.ElementAt(rnd);
+                    }
+                }
             }
 
             return card;
+        }
+
+        private bool CanBreakMoonShooter(Player potentialMoonShooter, Player player, IList<Card> validHand)
+        {
+            return potentialMoonShooter != null
+                && potentialMoonShooter != player
+                && validHand.Any(x => x.Suit == CardSuit.Hearts || x.Equals(new Card(CardSuit.Spades, CardValue.Queen)));
+                    
+        }
+
+        private IList<Card> GetOponentsCards(Game game, int playerIndex)
+        {
+            var players = game.GetPlayers();
+            Player player = game.GetPlayerByIndex(playerIndex);
+            IList<Card> cards = (from p in players
+                                 from c in p.Hand
+                                 where p != player
+                                 select c).ToList();
+            return cards;
+        }
+
+        private IList<Card> GetPlayedCards(Game game)
+        {
+            IList<Card> cards = (from ti in game.CurrentTrick
+                                select ti.Card)
+                                .Union(from trick in game.TrickHistory
+                                       from ti in trick
+                                       select ti.Card)
+                                .ToList();
+            return cards;
         }
 
         private Card GetDefensiveCard(Game game, IList<Card> validHand, int player)
         {
             TrickItem high = High(game.CurrentTrick);
             Card card = null;
+
+            var hand = game.GetPlayerByIndex(player).Hand;
 
             if (high == null)
                 card = validHand.OrderBy(x => x.Value).First();
@@ -105,16 +170,17 @@ namespace HeartsGameEngine.AI
             return card;
         }
 
-        private bool CanBreakMoonShooter(Game game, IList<Card> validHand, int player)
+        private Player PotentialMoonShooter(Game game)
         {
             var players = game.GetPlayers();
 
             if (players.Count(x => x.Score.Last() > 0) != 1)
-                return false;
+                return null;
 
             Player potentialMoonShooter = players.First(x => x.Score.Last() > 0);
-            int potentialMoonShooterIndex = game.GetIndexByPlayer(potentialMoonShooter);
 
+            return potentialMoonShooter;
+            /*
             TrickItem high = High(game.CurrentTrick);
 
             bool rv = potentialMoonShooterIndex != player
@@ -122,7 +188,7 @@ namespace HeartsGameEngine.AI
                 && high.Player != potentialMoonShooterIndex
                 && validHand.Any(x => x.Suit == CardSuit.Hearts);
 
-            return rv;
+            return rv;*/
         }
 
         private Card GetOffensiveCard(GameManager gameManager, int player)
@@ -146,7 +212,7 @@ namespace HeartsGameEngine.AI
             return false;
         }
 
-        private bool CanShootTheMoon(GameManager gameManager, int player)
+        private bool ShootTheMoon(GameManager gameManager, int player)
         {
             return false;
         }

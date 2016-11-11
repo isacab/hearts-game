@@ -66,7 +66,7 @@ namespace HeartsGameEngine
                 }
                 else if (firstPlayInTrick)
                 {
-                    if (!HeartsHasBeenPlayed(game))
+                    if (!HeartsHasBeenPlayed())
                     {
                         List<Card> filteredHand = validCards.Where(x => x.Suit != CardSuit.Hearts).ToList();
 
@@ -102,9 +102,9 @@ namespace HeartsGameEngine
             return card.Suit == CardSuit.Hearts || (card.Suit == CardSuit.Spades && card.Value == CardValue.Queen);
         }
 
-        private bool HeartsHasBeenPlayed(Game game)
+        public bool HeartsHasBeenPlayed()
         {
-            return game.TrickHistory.Any(t => ContainsSuit(t, CardSuit.Hearts));
+            return Game.TrickHistory.Any(t => ContainsSuit(t, CardSuit.Hearts));
         }
 
         private bool ContainsSuit(IEnumerable<TrickItem> trick, CardSuit suit)
