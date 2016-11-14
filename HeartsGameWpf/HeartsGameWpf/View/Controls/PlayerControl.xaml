@@ -12,7 +12,8 @@
                 Click="PassButton_Click"
                 HorizontalAlignment="Center" VerticalAlignment="Bottom" 
                 Margin="24"
-                Visibility="{Binding Path=HumanPlayerViewModel.PassButtonVisibility}"
+                Visibility="{Binding Path=HumanPlayerViewModel.ShowPassButton, Converter={StaticResource VisibilityConverter}}"
+                IsEnabled="False"
                 Content="{Binding Path=HumanPlayerViewModel.SubmitLabel}"/>
 
         <ListBox 

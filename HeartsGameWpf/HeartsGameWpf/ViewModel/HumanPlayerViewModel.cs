@@ -45,11 +45,11 @@ namespace HeartsGameWpf.ViewModel
             private set { SetValue(ref expectedNumberOfCards, value); }
         }
 
-        private Visibility passButtonVisibility = Visibility.Hidden;
-        public Visibility PassButtonVisibility
+        private bool showPassButton = false;
+        public bool ShowPassButton
         {
-            get { return passButtonVisibility; }
-            private set { SetValue(ref passButtonVisibility, value); }
+            get { return showPassButton; }
+            private set { SetValue(ref showPassButton, value); }
         }
 
         private string submitLabel;
@@ -97,7 +97,7 @@ namespace HeartsGameWpf.ViewModel
             if (e.PropertyName == "Phase")
             {
                 UpdateExpectedNumberOfCards();
-                UpdatePassButtonVisibility();
+                UpdateShowPassButton();
                 UpdateValidCards();
             }
 
@@ -115,7 +115,7 @@ namespace HeartsGameWpf.ViewModel
             UpdateValidCards();
             UpdateExpectedNumberOfCards();
             UpdateSubmitLabel();
-            UpdatePassButtonVisibility();
+            UpdateShowPassButton();
         }
 
         protected void UpdateSubmitLabel()
@@ -137,12 +137,12 @@ namespace HeartsGameWpf.ViewModel
             ExpectedNumberOfCards = num;
         }
 
-        protected void UpdatePassButtonVisibility()
+        protected void UpdateShowPassButton()
         {
             if (gameManager.Game.Phase == HeartsPhase.PassCards)
-                PassButtonVisibility = Visibility.Visible;
+                ShowPassButton = true;
             else
-                PassButtonVisibility = Visibility.Hidden;
+                ShowPassButton = false;
         }
 
         protected void UpdateCanMakeAction()

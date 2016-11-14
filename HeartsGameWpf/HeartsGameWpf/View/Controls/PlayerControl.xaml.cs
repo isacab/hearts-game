@@ -50,7 +50,7 @@ namespace HeartsGameWpf.View.Controls
 
             int maxCards = HumanPlayerViewModel.ExpectedNumberOfCards;
 
-            if (count == maxCards && HumanPlayerViewModel.PassButtonVisibility == System.Windows.Visibility.Hidden)
+            if (count == maxCards && HumanPlayerViewModel.ShowPassButton == false)
             {
                 PerformAction();
             }
@@ -62,6 +62,8 @@ namespace HeartsGameWpf.View.Controls
 
                 isMax = false;
             }
+
+            PassButton.IsEnabled = CanPerformAction();
         }
 
         private void PassButton_Click(object sender, RoutedEventArgs e)
@@ -80,6 +82,13 @@ namespace HeartsGameWpf.View.Controls
                     command.Execute(selectedCards);
                 }
             }
+        }
+
+        private bool CanPerformAction()
+        {
+            IList<Card> selectedCards = HandListView.SelectedItems.Cast<Card>().ToList();
+            ICommand command = HumanPlayerViewModel.SubmitCommand;
+            return command.CanExecute(selectedCards);
         }
     }
 }
