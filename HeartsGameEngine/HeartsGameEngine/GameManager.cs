@@ -98,7 +98,7 @@ namespace HeartsGameEngine
         }
 
         /// <summary>
-        /// Starts a new round and deals out the cards.
+        /// Starts a new round and deal the cards.
         /// </summary>
         /// <returns>True on success</returns>
         public bool StartNewRound()
@@ -190,9 +190,8 @@ namespace HeartsGameEngine
 
                 for (int i = 0; i < numPlayers; i++)
                 {
-                    int pretra = (i + positions);
                     Player p1 = players[i];
-                    Player p2 = players[HelperMethods.Rotate(i, -1, numPlayers)];
+                    Player p2 = players[HelperMethods.Rotate(i, positions, numPlayers)];
 
                     for (int j = 0; j < 3; j++)
                     {
