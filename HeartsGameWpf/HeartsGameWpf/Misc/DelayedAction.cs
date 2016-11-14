@@ -8,6 +8,9 @@ using System.Timers;
 
 namespace HeartsGameWpf.Misc
 {
+    /// <summary>
+    /// Executes an Action after a specified delay in milliseconds has passed. It's also possible to cancel the action.
+    /// </summary>
     class DelayedAction
     {
         private CancellationTokenSource source = new CancellationTokenSource();

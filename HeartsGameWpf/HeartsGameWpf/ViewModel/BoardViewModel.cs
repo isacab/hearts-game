@@ -19,8 +19,8 @@ namespace HeartsGameWpf.ViewModel
         private readonly GameManager gameManager;
         private readonly IAIPlayer aiPlayer;
 
-        private const int clearTrickDelay = 1000;
-        private const int aiDelay = 250;
+        private const int clearTrickDelay = 1000; // The time between a trick is finnished and the trick is cleared
+        private const int aiDelay = 250; // The time for an AI player play
 
         public BoardViewModel(GameManager gameManager)
         {
@@ -125,7 +125,7 @@ namespace HeartsGameWpf.ViewModel
 
         private void OnGameCanged(object sender, GameChangedEventArgs e)
         {
-            // Cancel delayed action
+            // Cancel delayed action if game was reseted
             if (e.Action == GameAction.Reset)
             {
                 delayedAction.Cancel();
@@ -137,6 +137,9 @@ namespace HeartsGameWpf.ViewModel
             }
         }
 
+        /// <summary>
+        /// This update function handles things like starting new turns, making AI moves and clear tricks
+        /// </summary>
         private DelayedAction delayedAction = new DelayedAction();
         private void Update()
         {
@@ -161,25 +164,20 @@ namespace HeartsGameWpf.ViewModel
                 // Check if player is an AI player
                 if(GetPlayerByIndex(player) is HumanPlayerViewModel == false)
                 {
+                    // No delay for pass actions
                     if (rules.CanPassCards(player))
                     {
                         aiPlayer.MakeAction(gameManager, player);
                     }
 
+                    // Delay play actions
                     if (rules.CanPlay(player))
                     {
                         delayedAction = new DelayedAction();
                         delayedAction.Delay = aiDelay;
                         delayedAction.Action = new Action(() =>
                         {
-                            var watch = System.Diagnostics.Stopwatch.StartNew();
-                            
-                            // the code that you want to measure comes here
                             aiPlayer.MakeAction(gameManager, player);
-
-                            watch.Stop();
-                            var elapsedMs = watch.ElapsedMilliseconds;
-                            Console.WriteLine("Elapsed time (ms): {0}", elapsedMs);
                         });
                         delayedAction.Execute();
                     }

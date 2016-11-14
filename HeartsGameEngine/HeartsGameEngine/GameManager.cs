@@ -11,7 +11,7 @@ namespace HeartsGameEngine
     {
         #region Fields
 
-        public const string SaveFile = "save.xml";
+        public const string SaveFile = "save.xml"; // The file where Game is saved.
 
         private SaveHandler saveHandler;
 
@@ -52,7 +52,7 @@ namespace HeartsGameEngine
         }
 
         /// <summary>
-        /// Is true when the state of the game is chagning.
+        /// Is true when the state of Game is chagning.
         /// </summary>
         private bool isChanging = false;
         public bool IsChanging
@@ -86,6 +86,9 @@ namespace HeartsGameEngine
             saveHandler.Save();
         }
 
+        /// <summary>
+        /// Set Game to it's initial state
+        /// </summary>
         public void Reset()
         {
             IsChanging = true;
@@ -94,6 +97,10 @@ namespace HeartsGameEngine
             OnGameChanged(new GameChangedEventArgs(GameAction.Reset));
         }
 
+        /// <summary>
+        /// Starts a new round and deals out the cards.
+        /// </summary>
+        /// <returns>True on success</returns>
         public bool StartNewRound()
         {
             if (IsChanging || !Rules.CanStartNewRound())
@@ -134,6 +141,10 @@ namespace HeartsGameEngine
             return true;
         }
 
+        /// <summary>
+        /// Starts a new turn
+        /// </summary>
+        /// <returns>True on success</returns>
         public bool StartNewTurn()
         {
             if (IsChanging || !Rules.CanStartNewTurn())
@@ -150,6 +161,12 @@ namespace HeartsGameEngine
             return true;
         }
 
+        /// <summary>
+        /// Pass three cards. When all players have passed the cards are moved from the players hand to another players hand. Which hand depends on the pass direction.
+        /// </summary>
+        /// <param name="playerIndex">Player that is making the pass</param>
+        /// <param name="cards">The cards to play</param>
+        /// <returns>True on success</returns>
         public bool PassCards(int playerIndex, IList<Card> cards)
         {
             if (IsChanging || !Rules.ValidPass(playerIndex, cards))
@@ -195,6 +212,12 @@ namespace HeartsGameEngine
             return true;
         }
 
+        /// <summary>
+        /// Play a card
+        /// </summary>
+        /// <param name="playerIndex">Player that is making the play</param>
+        /// <param name="card">The card to play</param>
+        /// <returns>True on success</returns>
         public bool Play(int playerIndex, Card card)
         {
             if (IsChanging || !Rules.ValidPlay(playerIndex, card))
@@ -219,6 +242,10 @@ namespace HeartsGameEngine
             return true;
         }
 
+        /// <summary>
+        /// Add current trick to trick history, clear current trick, update score and update game phase.
+        /// </summary>
+        /// <returns>True on success</returns>
         public bool ClearTrick()
         {
             if (IsChanging || !Rules.CanClearTrick())
@@ -249,6 +276,9 @@ namespace HeartsGameEngine
 
         #region Private Helpers
 
+        /// <summary>
+        /// Deal cards to players hands from a shuffled deck.
+        /// </summary>
         private void Deal()
         {
             List<Card> deck = DeckFactory.Make();
