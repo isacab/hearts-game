@@ -13,7 +13,7 @@ namespace HeartsGameEngine
 
     public class Rules
     {
-        public const int EndScore = 25;
+        public const int EndScore = 100;
 
         public Rules(Game game)
         {
@@ -53,10 +53,10 @@ namespace HeartsGameEngine
                 var trick = game.CurrentTrick;
                 var trickHistory = game.TrickHistory;
 
-                bool firstTrick = trickHistory.Count() == 0;
-                bool firstPlayInTrick = trick.Count() == 0;
+                bool firstTrick = trickHistory.Count == 0;
+                bool firstPlayInTrick = trick.Count == 0;
 
-                if (game.CurrentPlayer != playerIndex)
+                if (game.CurrentPlayer != playerIndex || game.Phase == HeartsPhase.None)
                 {
                     validCards = new List<Card>();
                 }
@@ -81,16 +81,12 @@ namespace HeartsGameEngine
                     //Filter hand by leadingSuit
                     List<Card> filteredHand = validCards.Where(x => x.Suit == leadingSuit).ToList();
 
-                    if (firstTrick && !filteredHand.Any())
+                    if (firstTrick && filteredHand.Count == 0)
                         filteredHand = validCards.Where(x => !IsPenaltyCard(x)).ToList();
 
-                    if (filteredHand.Any())
+                    if (filteredHand.Count != 0)
                         validCards = filteredHand;
                 }
-            }
-            else if(game.Phase == HeartsPhase.None)
-            {
-                validCards.Clear();
             }
 
             return validCards;

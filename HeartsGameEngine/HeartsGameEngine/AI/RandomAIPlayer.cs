@@ -30,8 +30,8 @@ namespace HeartsGameEngine.AI
         {
             Game game = gameManager.Game;
             IList<Card> validHand = gameManager.Rules.ValidCards(player);
-            int rnd = HelperMethods.GetRandomNumber(0, validHand.Count() - 1);
-            Card card = validHand.ElementAt(rnd);
+            int rnd = HelperMethods.GetRandomNumber(0, validHand.Count - 1);
+            Card card = validHand[rnd];
 
             return card;
         }

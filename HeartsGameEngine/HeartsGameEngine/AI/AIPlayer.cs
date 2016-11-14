@@ -9,7 +9,7 @@ namespace HeartsGameEngine.AI
 {
     public abstract class AIPlayer : IAIPlayer
     {
-        public void MakeAction(GameManager gameManager, int player)
+        public virtual void MakeAction(GameManager gameManager, int player)
         {
             Rules rules = gameManager.Rules;
 

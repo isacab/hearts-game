@@ -172,7 +172,14 @@ namespace HeartsGameWpf.ViewModel
                         delayedAction.Delay = aiDelay;
                         delayedAction.Action = new Action(() =>
                         {
+                            var watch = System.Diagnostics.Stopwatch.StartNew();
+                            
+                            // the code that you want to measure comes here
                             aiPlayer.MakeAction(gameManager, player);
+
+                            watch.Stop();
+                            var elapsedMs = watch.ElapsedMilliseconds;
+                            Console.WriteLine("Elapsed time (ms): {0}", elapsedMs);
                         });
                         delayedAction.Execute();
                     }

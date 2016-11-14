@@ -40,7 +40,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AI\AIPlayer.cs" />
-    <Compile Include="AI\MonteCarloAIPlayer.cs" />
     <Compile Include="AI\SimpleAIPlayer.cs" />
     <Compile Include="AI\IAIPlayer.cs" />
     <Compile Include="AI\RandomAIPlayer.cs" />
