@@ -37,11 +37,11 @@
                 <TextBlock Style="{StaticResource ScoreTextStyle}" DataContext="{Binding Path=BoardViewModel.Player1}" DockPanel.Dock="Bottom"/>
             </DockPanel>
 
-            <!--ItemTemplate="{StaticResource HiddenHandListBoxItemTemplate}"-->
             <DockPanel HorizontalAlignment="Left">
                 <Grid DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <ListBox 
                         ItemsSource="{Binding Path=BoardViewModel.Player2.SortedHand}"
+                        ItemTemplate="{StaticResource HiddenHandListBoxItemTemplate}"
                         Style="{StaticResource HandListBoxStyle}"
                         IsEnabled="False">
                     </ListBox>
@@ -56,6 +56,7 @@
                 <Grid DockPanel.Dock="Bottom" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <ListBox 
                         ItemsSource="{Binding Path=BoardViewModel.Player3.SortedHand}"
+                        ItemTemplate="{StaticResource HiddenHandListBoxItemTemplate}"
                         Style="{StaticResource HandListBoxStyle}"
                         IsEnabled="False">
                     </ListBox>
@@ -70,6 +71,7 @@
                 <Grid DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <ListBox 
                         ItemsSource="{Binding Path=BoardViewModel.Player4.SortedHand}"
+                        ItemTemplate="{StaticResource HiddenHandListBoxItemTemplate}"
                         Style="{StaticResource HandListBoxStyle}"
                         IsEnabled="False">
                     </ListBox>

@@ -1,75 +1,67 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Game>
-  <CurrentPlayer>0</CurrentPlayer>
-  <RoundCounter>1</RoundCounter>
-  <Phase>Tricks</Phase>
+  <CurrentPlayer>-1</CurrentPlayer>
+  <RoundCounter>2</RoundCounter>
+  <Phase>PassCards</Phase>
   <Player1>
     <Player>
       <Hand>
         <Card>
-          <Suit>Hearts</Suit>
-          <Value>Seven</Value>
+          <Suit>Spades</Suit>
+          <Value>Nine</Value>
         </Card>
         <Card>
-          <Suit>Diamonds</Suit>
-          <Value>Four</Value>
+          <Suit>Hearts</Suit>
+          <Value>King</Value>
         </Card>
         <Card>
           <Suit>Clubs</Suit>
           <Value>Three</Value>
         </Card>
         <Card>
-          <Suit>Spades</Suit>
-          <Value>Two</Value>
-        </Card>
-        <Card>
-          <Suit>Hearts</Suit>
+          <Suit>Clubs</Suit>
           <Value>Ace</Value>
         </Card>
         <Card>
-          <Suit>Hearts</Suit>
-          <Value>Five</Value>
-        </Card>
-        <Card>
-          <Suit>Hearts</Suit>
-          <Value>Queen</Value>
+          <Suit>Diamonds</Suit>
+          <Value>King</Value>
         </Card>
         <Card>
           <Suit>Hearts</Suit>
           <Value>Eight</Value>
         </Card>
         <Card>
-          <Suit>Spades</Suit>
-          <Value>Nine</Value>
+          <Suit>Hearts</Suit>
+          <Value>Seven</Value>
         </Card>
         <Card>
           <Suit>Diamonds</Suit>
-          <Value>Ace</Value>
-        </Card>
-        <Card>
-          <Suit>Diamonds</Suit>
-          <Value>Queen</Value>
+          <Value>Ten</Value>
         </Card>
         <Card>
           <Suit>Hearts</Suit>
-          <Value>Nine</Value>
+          <Value>Six</Value>
+        </Card>
+        <Card>
+          <Suit>Clubs</Suit>
+          <Value>Two</Value>
+        </Card>
+        <Card>
+          <Suit>Clubs</Suit>
+          <Value>Eight</Value>
+        </Card>
+        <Card>
+          <Suit>Diamonds</Suit>
+          <Value>Three</Value>
+        </Card>
+        <Card>
+          <Suit>Hearts</Suit>
+          <Value>Four</Value>
         </Card>
       </Hand>
-      <PassedCards>
-        <Card>
-          <Suit>Diamonds</Suit>
-          <Value>King</Value>
-        </Card>
-        <Card>
-          <Suit>Diamonds</Suit>
-          <Value>Jack</Value>
-        </Card>
-        <Card>
-          <Suit>Diamonds</Suit>
-          <Value>Five</Value>
-        </Card>
-      </PassedCards>
+      <PassedCards />
       <Score>
+        <RoundScore>2</RoundScore>
         <RoundScore>0</RoundScore>
       </Score>
     </Player>
@@ -78,65 +70,74 @@
     <Player>
       <Hand>
         <Card>
-          <Suit>Diamonds</Suit>
-          <Value>Ten</Value>
-        </Card>
-        <Card>
-          <Suit>Clubs</Suit>
-          <Value>Four</Value>
-        </Card>
-        <Card>
-          <Suit>Clubs</Suit>
-          <Value>Eight</Value>
-        </Card>
-        <Card>
-          <Suit>Hearts</Suit>
-          <Value>Jack</Value>
-        </Card>
-        <Card>
-          <Suit>Diamonds</Suit>
-          <Value>Eight</Value>
-        </Card>
-        <Card>
           <Suit>Spades</Suit>
-          <Value>Jack</Value>
-        </Card>
-        <Card>
-          <Suit>Diamonds</Suit>
-          <Value>Three</Value>
-        </Card>
-        <Card>
-          <Suit>Spades</Suit>
-          <Value>Five</Value>
-        </Card>
-        <Card>
-          <Suit>Diamonds</Suit>
           <Value>King</Value>
         </Card>
         <Card>
           <Suit>Diamonds</Suit>
-          <Value>Jack</Value>
+          <Value>Five</Value>
         </Card>
         <Card>
           <Suit>Diamonds</Suit>
-          <Value>Five</Value>
+          <Value>Seven</Value>
+        </Card>
+        <Card>
+          <Suit>Spades</Suit>
+          <Value>Two</Value>
+        </Card>
+        <Card>
+          <Suit>Clubs</Suit>
+          <Value>Six</Value>
+        </Card>
+        <Card>
+          <Suit>Spades</Suit>
+          <Value>Ace</Value>
+        </Card>
+        <Card>
+          <Suit>Spades</Suit>
+          <Value>Seven</Value>
+        </Card>
+        <Card>
+          <Suit>Diamonds</Suit>
+          <Value>Nine</Value>
+        </Card>
+        <Card>
+          <Suit>Clubs</Suit>
+          <Value>Jack</Value>
+        </Card>
+        <Card>
+          <Suit>Hearts</Suit>
+          <Value>Nine</Value>
+        </Card>
+        <Card>
+          <Suit>Spades</Suit>
+          <Value>Eight</Value>
+        </Card>
+        <Card>
+          <Suit>Spades</Suit>
+          <Value>Ten</Value>
+        </Card>
+        <Card>
+          <Suit>Diamonds</Suit>
+          <Value>Queen</Value>
         </Card>
       </Hand>
       <PassedCards>
         <Card>
           <Suit>Spades</Suit>
-          <Value>Ace</Value>
-        </Card>
-        <Card>
-          <Suit>Spades</Suit>
           <Value>King</Value>
         </Card>
         <Card>
-          <Suit>Clubs</Suit>
+          <Suit>Spades</Suit>
           <Value>Ace</Value>
+        </Card>
+        <Card>
+          <Suit>Diamonds</Suit>
+          <Value>Queen</Value>
         </Card>
       </PassedCards>
       <Score>
+        <RoundScore>5</RoundScore>
         <RoundScore>0</RoundScore>
       </Score>
     </Player>
@@ -145,48 +146,56 @@
     <Player>
       <Hand>
         <Card>
+          <Suit>Spades</Suit>
+          <Value>Four</Value>
+        </Card>
+        <Card>
+          <Suit>Diamonds</Suit>
+          <Value>Four</Value>
+        </Card>
+        <Card>
           <Suit>Clubs</Suit>
-          <Value>Five</Value>
+          <Value>King</Value>
+        </Card>
+        <Card>
+          <Suit>Diamonds</Suit>
+          <Value>Ace</Value>
         </Card>
         <Card>
           <Suit>Spades</Suit>
+          <Value>Three</Value>
+        </Card>
+        <Card>
+          <Suit>Spades</Suit>
+          <Value>Queen</Value>
+        </Card>
+        <Card>
+          <Suit>Clubs</Suit>
           <Value>Ten</Value>
         </Card>
         <Card>
           <Suit>Diamonds</Suit>
-          <Value>Nine</Value>
+          <Value>Eight</Value>
         </Card>
         <Card>
-          <Suit>Clubs</Suit>
+          <Suit>Diamonds</Suit>
           <Value>Jack</Value>
         </Card>
         <Card>
-          <Suit>Clubs</Suit>
-          <Value>Nine</Value>
-        </Card>
-        <Card>
           <Suit>Hearts</Suit>
-          <Value>Three</Value>
-        </Card>
-        <Card>
-          <Suit>Hearts</Suit>
-          <Value>Ten</Value>
+          <Value>Ace</Value>
         </Card>
         <Card>
           <Suit>Diamonds</Suit>
           <Value>Two</Value>
         </Card>
         <Card>
-          <Suit>Hearts</Suit>
-          <Value>Six</Value>
-        </Card>
-        <Card>
-          <Suit>Spades</Suit>
-          <Value>King</Value>
-        </Card>
-        <Card>
           <Suit>Clubs</Suit>
-          <Value>Ace</Value>
+          <Value>Five</Value>
+        </Card>
+        <Card>
+          <Suit>Hearts</Suit>
+          <Value>Five</Value>
         </Card>
       </Hand>
       <PassedCards>
@@ -195,15 +204,16 @@
           <Value>Queen</Value>
         </Card>
         <Card>
-          <Suit>Hearts</Suit>
-          <Value>King</Value>
+          <Suit>Diamonds</Suit>
+          <Value>Ace</Value>
         </Card>
         <Card>
-          <Suit>Clubs</Suit>
-          <Value>Queen</Value>
+          <Suit>Hearts</Suit>
+          <Value>Ace</Value>
         </Card>
       </PassedCards>
       <Score>
+        <RoundScore>18</RoundScore>
         <RoundScore>0</RoundScore>
       </Score>
     </Player>
@@ -212,28 +222,24 @@
     <Player>
       <Hand>
         <Card>
+          <Suit>Clubs</Suit>
+          <Value>Queen</Value>
+        </Card>
+        <Card>
           <Suit>Hearts</Suit>
           <Value>Two</Value>
         </Card>
         <Card>
-          <Suit>Spades</Suit>
-          <Value>Seven</Value>
-        </Card>
-        <Card>
-          <Suit>Clubs</Suit>
-          <Value>Six</Value>
+          <Suit>Hearts</Suit>
+          <Value>Ten</Value>
         </Card>
         <Card>
           <Suit>Hearts</Suit>
-          <Value>Four</Value>
+          <Value>Jack</Value>
         </Card>
         <Card>
-          <Suit>Diamonds</Suit>
-          <Value>Seven</Value>
-        </Card>
-        <Card>
-          <Suit>Clubs</Suit>
-          <Value>Seven</Value>
+          <Suit>Hearts</Suit>
+          <Value>Three</Value>
         </Card>
         <Card>
           <Suit>Diamonds</Suit>
@@ -241,107 +247,53 @@
         </Card>
         <Card>
           <Suit>Spades</Suit>
-          <Value>Eight</Value>
+          <Value>Five</Value>
         </Card>
         <Card>
-          <Suit>Spades</Suit>
+          <Suit>Clubs</Suit>
           <Value>Four</Value>
+        </Card>
+        <Card>
+          <Suit>Clubs</Suit>
+          <Value>Nine</Value>
         </Card>
         <Card>
           <Suit>Spades</Suit>
           <Value>Six</Value>
         </Card>
         <Card>
+          <Suit>Spades</Suit>
+          <Value>Jack</Value>
+        </Card>
+        <Card>
           <Suit>Hearts</Suit>
-          <Value>King</Value>
+          <Value>Queen</Value>
+        </Card>
+        <Card>
+          <Suit>Clubs</Suit>
+          <Value>Seven</Value>
         </Card>
       </Hand>
       <PassedCards>
         <Card>
-          <Suit>Diamonds</Suit>
-          <Value>Ace</Value>
-        </Card>
-        <Card>
-          <Suit>Diamonds</Suit>
+          <Suit>Clubs</Suit>
           <Value>Queen</Value>
         </Card>
         <Card>
           <Suit>Hearts</Suit>
-          <Value>Nine</Value>
+          <Value>Queen</Value>
+        </Card>
+        <Card>
+          <Suit>Hearts</Suit>
+          <Value>Jack</Value>
         </Card>
       </PassedCards>
       <Score>
+        <RoundScore>1</RoundScore>
         <RoundScore>0</RoundScore>
       </Score>
     </Player>
   </Player4>
-  <CurrentTrick>
-    <TrickItem>
-      <Player>1</Player>
-      <Card>
-        <Card>
-          <Suit>Spades</Suit>
-          <Value>Three</Value>
-        </Card>
-      </Card>
-    </TrickItem>
-    <TrickItem>
-      <Player>2</Player>
-      <Card>
-        <Card>
-          <Suit>Spades</Suit>
-          <Value>Ace</Value>
-        </Card>
-      </Card>
-    </TrickItem>
-    <TrickItem>
-      <Player>3</Player>
-      <Card>
-        <Card>
-          <Suit>Spades</Suit>
-          <Value>Queen</Value>
-        </Card>
-      </Card>
-    </TrickItem>
-  </CurrentTrick>
-  <TrickHistory>
-    <Trick>
-      <TrickItem>
-        <Player>2</Player>
-        <Card>
-          <Card>
-            <Suit>Clubs</Suit>
-            <Value>Two</Value>
-          </Card>
-        </Card>
-      </TrickItem>
-      <TrickItem>
-        <Player>3</Player>
-        <Card>
-          <Card>
-            <Suit>Clubs</Suit>
-            <Value>Queen</Value>
-          </Card>
-        </Card>
-      </TrickItem>
-      <TrickItem>
-        <Player>0</Player>
-        <Card>
-          <Card>
-            <Suit>Clubs</Suit>
-            <Value>Ten</Value>
-          </Card>
-        </Card>
-      </TrickItem>
-      <TrickItem>
-        <Player>1</Player>
-        <Card>
-          <Card>
-            <Suit>Clubs</Suit>
-            <Value>King</Value>
-          </Card>
-        </Card>
-      </TrickItem>
-    </Trick>
-  </TrickHistory>
+  <CurrentTrick />
+  <TrickHistory />
 </Game>

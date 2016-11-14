@@ -92,7 +92,7 @@ namespace HeartsGameEngine
             return validCards;
         }
 
-        private bool IsPenaltyCard(Card card)
+        public bool IsPenaltyCard(Card card)
         {
             //true if Suit equals Hearts or if the card is queen of spades
             return card.Suit == CardSuit.Hearts || (card.Suit == CardSuit.Spades && card.Value == CardValue.Queen);

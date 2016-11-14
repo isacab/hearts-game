@@ -39,11 +39,7 @@ namespace HeartsGameEngine.AI
             Player player = game.GetPlayerByIndex(playerIndex);
             IList<Card> validHand = gameManager.Rules.ValidCards(playerIndex);
             IList<Card> hand = game.GetPlayerByIndex(playerIndex).Hand;
-            IList<Card> playedCards = GetPlayedCards(game);
-            IList<Card> oponentsCards = GetOponentsCards(game, playerIndex);
-            var currentTrick = game.CurrentTrick;
-            Player potentialMoonShooter = PotentialMoonShooter(game);
-            bool heartsHasBeenPlayed = gameManager.Rules.HeartsHasBeenPlayed();
+            Card qsCard = new Card(CardSuit.Spades, CardValue.Queen);
 
             if(game.TrickHistory.Count == 0) //first trick
             {
@@ -58,9 +54,9 @@ namespace HeartsGameEngine.AI
                 }
                 else if(highSpades.Count > 0)
                 {
-                    foreach(Card c in highSpades)
+                    foreach(Card c in highSpades.OrderByDescending(x => x.Value))
                     {
-                        if (CanDumpCard(game, c))
+                        if (CanDumpCard(gameManager, c))
                             card = c;
                     }
                 }
@@ -68,57 +64,44 @@ namespace HeartsGameEngine.AI
 
             if (card == null)
             {
-                if (CanBreakMoonShooter(potentialMoonShooter, player, validHand))
+                TrickItem high = High(game.CurrentTrick);
+                bool hasHighSpades = hand.Any(x => x.Suit == CardSuit.Spades && x.Value >= CardValue.Queen);
+
+                if (hasHighSpades && high == null)
                 {
-                    card = validHand.Where(x => x.Suit == CardSuit.Hearts).OrderByDescending(x => x.Value).FirstOrDefault();
+                    card = validHand.Where(x => x.Suit != CardSuit.Spades).OrderBy(x => x.Value).FirstOrDefault();
                 }
                 else
                 {
-                    Card qsCard = new Card(CardSuit.Spades, CardValue.Queen);
-                    bool hasQueenOfSpades = hand.Any(x => x.Equals(qsCard));
-                    TrickItem high = High(game.CurrentTrick);
-
-                    if (hasQueenOfSpades)
-                    {
-                        if (high == null)
-                            card = validHand.Where(x => x.Suit != CardSuit.Spades).OrderBy(x => x.Value).FirstOrDefault();
-                        else
-                            card = validHand.Where(x => x.Value < high.Card.Value || x.Suit != high.Card.Suit && !x.Equals(qsCard))
-                                                    .OrderByDescending(x => x.Value)
-                                                    .FirstOrDefault();
-                    }
+                    if (high == null)
+                        card = validHand.OrderBy(x => x.Value).FirstOrDefault();
                     else
-                    {
-                        if (high == null)
-                            card = validHand.OrderBy(x => x.Value).FirstOrDefault();
-                        else
-                            card = validHand.Where(x => x.Value < high.Card.Value || x.Suit != high.Card.Suit)
-                                                    .OrderByDescending(x => x.Value)
-                                                    .FirstOrDefault();
-                    }
+                        card = validHand.Where(x => x.Value < high.Card.Value || x.Suit != high.Card.Suit)
+                                                .OrderByDescending(x => x.Value)
+                                                .FirstOrDefault();
                 }
+            }
+
+            if (card == null && game.CurrentTrick.Count == 3)
+            {
+                card = validHand.OrderByDescending(x => x.Value).FirstOrDefault(x => !x.Equals(qsCard));
             }
 
             if(card == null)
             {
-                if (game.CurrentTrick.Count == 3)
-                {
-                    card = validHand.OrderByDescending(x => x.Value).First();
-                }
-                else
-                {
-                    int rnd = HelperMethods.GetRandomNumber(0, validHand.Count() - 1);
-                    card = validHand.ElementAt(rnd);
-                }
+                card = validHand.OrderBy(x => x.Value).First();
             }
 
             return card;
         }
 
+        #region Private helpers
+
         private bool QueenOfSpadesHasBeenPlayed(Game game)
         {
-            return game.TrickHistory.Any(x => x.Any(y => y.Card.Suit == CardSuit.Spades))
-                    || game.CurrentTrick.Any(x => x.Card.Suit == CardSuit.Spades);
+            Card qsCard = new Card(CardSuit.Spades, CardValue.Queen);
+            return game.TrickHistory.Any(x => x.Any(y => y.Equals(qsCard)))
+                    || game.CurrentTrick.Any(x => x.Equals(qsCard));
         }
 
         private bool BleedingOutSpades(Game game, Player player)
@@ -132,92 +115,21 @@ namespace HeartsGameEngine.AI
             return rv;
         }
 
-        private bool CanBreakMoonShooter(Player potentialMoonShooter, Player player, IList<Card> validHand)
+        private bool CanDumpCard(GameManager gameManager, Card card)
         {
-            return potentialMoonShooter != null
-                && potentialMoonShooter != player
-                && validHand.Any(x => x.Suit == CardSuit.Hearts || x.Equals(new Card(CardSuit.Spades, CardValue.Queen)));
-                    
-        }
+            var currentTrick = gameManager.Game.CurrentTrick;
+            var rules = gameManager.Rules;
 
-        private IList<Card> GetOponentsCards(Game game, int playerIndex)
-        {
-            var players = game.GetPlayers();
-            Player player = game.GetPlayerByIndex(playerIndex);
-            IList<Card> cards = (from p in players
-                                 from c in p.Hand
-                                 where p != player
-                                 select c).ToList();
-            return cards;
-        }
-
-        private IList<Card> GetPlayedCards(Game game)
-        {
-            IList<Card> cards = (from ti in game.CurrentTrick
-                                select ti.Card)
-                                .Union(from trick in game.TrickHistory
-                                       from ti in trick
-                                       select ti.Card)
-                                .ToList();
-            return cards;
-        }
-
-        private Card GetDefensiveCard(Game game, IList<Card> validHand, int player)
-        {
-            TrickItem high = High(game.CurrentTrick);
-            Card card = null;
-
-            var hand = game.GetPlayerByIndex(player).Hand;
-
-            if (high == null)
-                card = validHand.OrderBy(x => x.Value).First();
-            else
-                card = validHand.Where(x => x.Value < high.Card.Value || x.Suit != high.Card.Suit)
-                                        .OrderByDescending(x => x.Value)
-                                        .FirstOrDefault();
-
-            if (card == null)
-            {
-                if (game.CurrentTrick.Count == 3)
-                    card = validHand.OrderByDescending(x => x.Value).First();
-                else
-                {
-                    int rnd = HelperMethods.GetRandomNumber(0, validHand.Count() - 1);
-                    card = validHand.ElementAt(rnd);
-                }
-            }
-
-            return card;
-        }
-
-        private Player PotentialMoonShooter(Game game)
-        {
-            var players = game.GetPlayers();
-
-            if (players.Count(x => x.Score.Last() > 0) != 1)
-                return null;
-
-            Player potentialMoonShooter = players.First(x => x.Score.Last() > 0);
-
-            return potentialMoonShooter;
-        }
-
-        private Card GetOffensiveCard(GameManager gameManager, int player)
-        {
-            throw new NotImplementedException();
-        }
-
-        private bool CanDumpCard(Game game, Card card)
-        {
-            var currentTrick = game.CurrentTrick;
-
-            if(currentTrick.Count == 0)
+            if (currentTrick.Count == 0)
                 return false;
 
-            if(currentTrick[0].Card.Suit != card.Suit)
+            if (currentTrick[0].Card.Suit != card.Suit)
                 return true;
 
-            if(currentTrick.Any(x => x.Card.Suit == card.Suit && x.Card.Value > card.Value))
+            if (currentTrick.Any(x => x.Card.Suit == card.Suit && x.Card.Value > card.Value))
+                return true;
+
+            if (currentTrick.Count == 3 && !rules.IsPenaltyCard(card) && !currentTrick.Any(x => rules.IsPenaltyCard(x.Card)))
                 return true;
 
             return false;
@@ -235,5 +147,7 @@ namespace HeartsGameEngine.AI
             }
             return high;
         }
+
+        #endregion Private helpers
     }
 }
